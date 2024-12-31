@@ -12,18 +12,33 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Slug;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
 
 class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
-
+    protected static ?string $navigationGroup = 'Product';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextInput::make('name')
+                    ->required(),
+                Toggle::make('active')
+                    ->default(true),
+                SpatieMediaLibraryFileUpload::make('image')
+                    ->label('image')
+                    ->required()
+                    ->collection('category'),
             ]);
     }
 
@@ -31,7 +46,13 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name'),
+                TextColumn::make('slug'),
+                IconColumn::make('active')
+                    ->boolean(),
+                // SpatieMediaLibraryImageColumn::make('image')
+                //     ->collection('category')
+                //     ->label('Category Image'),  
             ])
             ->filters([
                 //
