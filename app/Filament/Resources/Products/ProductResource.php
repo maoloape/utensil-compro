@@ -46,7 +46,7 @@ class ProductResource extends Resource
                     Repeater::make('detail')
                         ->schema([
                             TextInput::make('art')->label('Art.')->required(),
-                            TextInput::make('Capacity')->label('Capacity (ml)')->required(),
+                            TextInput::make('detail')->label('Detail')->required(),
                         ])
                         ->columns(2)
                         ->defaultItems(1)

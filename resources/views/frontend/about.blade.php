@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+    <title>Tentang Kami</title>
+@endsection
+
 @section('head')
 <style>
     body {

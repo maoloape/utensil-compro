@@ -2,44 +2,29 @@
 <html lang="en">
 <head>
     @include('layouts.head')
-    @yield('head')
+    @yield('title')
+    @yield('style')
     <style>
         body {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
             position: relative;
+            font-family: 'Myriad Pro', sans-serif;
         }
-        main {
-            flex: 1;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(42, 42, 42, 0.4);
-            /* background: linear-gradient(to top, rgba(42, 42, 42, 0.8), rgba(42, 42, 42, 0.3)); */
-            z-index: 1;
-        }
-        .content {
-            position: relative;
-            z-index: 2;
+
+        .container{
+            max-width: 1740px;
         }
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="w-full content">
-        @include('layouts.topbar')
-    </div>
-    <main class="w-full content">
+    {{-- @include('layouts.topbar') --}}
+    <main class="w-full">
         @yield('content')
     </main>
-    <div class="content">
+    <div class="w-full">
         @include('layouts.footer')
     </div>
-    @vite('resources/js/app.js')
 </body>
 </html>

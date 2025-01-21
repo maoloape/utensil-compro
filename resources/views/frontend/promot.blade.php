@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('title')
+    <title>Prmotion</title>
+@endsection
+
 @section('head')
 <style>
     body {

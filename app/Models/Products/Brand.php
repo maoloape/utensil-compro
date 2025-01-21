@@ -12,7 +12,7 @@ class Brand extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['name', 'slug', 'active'];
+    protected $fillable = ['name', 'slug', 'active', 'description'];
 
     protected static function booted()
     {

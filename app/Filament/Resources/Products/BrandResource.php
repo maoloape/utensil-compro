@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Slug;
@@ -33,12 +34,18 @@ class BrandResource extends Resource
             ->schema([
                 TextInput::make('name')
                     ->required(),
+                RichEditor::make('description')
+                    ->required(),
                 Toggle::make('active')
                     ->default(true),
-                SpatieMediaLibraryFileUpload::make('image')
-                    ->label('image')
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->label('logo')
                     ->required()
-                    ->collection('brand'),
+                    ->collection('brand-logo'),
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->label('cover')
+                    ->required()
+                    ->collection('brand-cover'),
             ]);
     }
 
@@ -50,9 +57,6 @@ class BrandResource extends Resource
                 TextColumn::make('slug'),
                 IconColumn::make('active')
                     ->boolean(),
-                // SpatieMediaLibraryImageColumn::make('image')
-                //     ->collection('brand')
-                //     ->label('Brand Image'),
                 ])
             ->filters([
                 //

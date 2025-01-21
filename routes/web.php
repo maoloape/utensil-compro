@@ -23,4 +23,3 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/promotion', [PromotController::class, 'index'])->name('promotion');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
-
