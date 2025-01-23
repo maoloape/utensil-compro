@@ -17,9 +17,6 @@ class Brand extends Model implements HasMedia
     protected static function booted()
     {
         static::saving(function ($brand) {
-            if (request()->hasFile('image')) {
-                $brand->addMediaFromRequest('image')->toMediaCollection('brand');
-            }
             if (empty($brand->slug)) {
                 $brand->slug = Str::slug($brand->name);
             }
@@ -28,12 +25,30 @@ class Brand extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('brand')->singleFile();
+        $this->addMediaCollection('brand-logo')->singleFile();
+        $this->addMediaCollection('brand-logo-hitam')->singleFile();
+        $this->addMediaCollection('brand-cover')->singleFile();
+        $this->addMediaCollection('brand-cover-background')->singleFile();
     }
 
-    public function getImageUrlAttribute(): ?string
+    public function getLogoUrlAttribute(): ?string
     {
-        return $this->getFirstMediaUrl('brand');
+        return $this->getFirstMediaUrl('brand-logo');
+    }
+
+    public function getLogoHitamUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('brand-logo-hitam');
+    }
+
+    public function getCoverUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('brand-cover');
+    }
+
+    public function getCoverBackgroundUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('brand-cover-background');
     }
 
     public function products()

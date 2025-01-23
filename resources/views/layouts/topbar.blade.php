@@ -1,6 +1,4 @@
-<nav class="navbar pt-5 bg-transparent relative w-full top-0 z-50" 
-    style="background: linear-gradient(to bottom, rgba(42, 42, 42, 1), rgba(42, 42, 42, 0)); height: auto;">
-    <div class="container max-w-screen-2xl mx-auto">
+<nav class="navbar pt-5 bg-gradient-to-b from-[#2a2a2a]/100 to-transparent relative w-full top-0 z-50">    <div class="container max-w-screen-2xl mx-auto">
         <div class="flex">
             <a href="/" class="flex items-center text-white">
                 <img src="{{ asset('assets/logo/logo-utensil.png') }}" alt="Logo" class="h-16" style="width: auto; height:75px;"> 

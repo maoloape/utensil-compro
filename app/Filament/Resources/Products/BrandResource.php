@@ -39,13 +39,21 @@ class BrandResource extends Resource
                 Toggle::make('active')
                     ->default(true),
                 SpatieMediaLibraryFileUpload::make('logo')
-                    ->label('logo')
+                    ->label('Logo Putih')
                     ->required()
                     ->collection('brand-logo'),
+                SpatieMediaLibraryFileUpload::make('logo_hitam')
+                    ->label('Logo Hitam')
+                    ->required()
+                    ->collection('brand-logo-hitam'),
                 SpatieMediaLibraryFileUpload::make('cover')
-                    ->label('cover')
+                    ->label('Cover Product')
                     ->required()
                     ->collection('brand-cover'),
+                SpatieMediaLibraryFileUpload::make('cover_background')
+                    ->label('Cover Background')
+                    ->required()
+                    ->collection('brand-cover-background'),
             ]);
     }
 

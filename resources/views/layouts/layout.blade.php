@@ -4,6 +4,7 @@
     @include('layouts.head')
     @yield('title')
     @yield('style')
+    <link rel="icon" type="image/png" href="{{ asset('assets/logo/logo-utensil-image.png') }}">
     <style>
         body {
             display: flex;
@@ -26,5 +27,7 @@
     <div class="w-full">
         @include('layouts.footer')
     </div>
+
+    @yield('script')
 </body>
 </html>

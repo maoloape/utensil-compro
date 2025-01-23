@@ -28,20 +28,20 @@
                 </div>
                 <h4 class="font-600 inline-block pb-1 mb-4 text-[4rem]">Hubungi <br> Kami</h4>
             </div>            
-            <div class="flex flex-col lg:flex-row w-full lg:w-1/2 bg-[#b3b3b3] pb-12 pt-[6rem] px-4"> 
+            <div class="flex flex-col lg:flex-row w-full lg:w-1/2 bg-[#b3b3b3] pb-12 pt-[6rem] px-4 text-black"> 
                 <div class="text-left lg:text-left w-full lg:w-1/2"> 
                     <p class="font-semibold" style="margin-bottom: 0.25rem;">Bandung (Factory)</p> 
                     <p style="margin-bottom: 0;">Jalan Kopo Bihbul No. 131</p> 
                     <p style="margin-bottom: 0;">Bandung, Jawa Barat 40225, Indonesia</p> 
                     <p style="margin-bottom: 0;">Tel: 022-540-7772 / 73</p> 
                     <p style="margin-bottom: 0;">Fax: 022-540-2831</p> 
-                    <p style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-blue-400">bandung@indoutensil.com</a></p> 
+                    <p style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-black font-bold">bandung@indoutensil.com</a></p> 
                 </div> 
                 <div class="text-left lg:text-left w-full lg:w-1/2"> 
                     <p class="font-semibold" style="margin-bottom: 0;">Jakarta (Marketing)</p> 
                     <p style="margin-bottom: 0;">Tel: +6221-391-6949</p> 
                     <p style="margin-bottom: 0;">Fax: +6221-392-7090</p> 
-                    <p style="margin-bottom: 0;">Email: <a href="mailto:jkt@indoutensil.com" class="text-blue-400">jkt@indoutensil.com</a></p> 
+                    <p style="margin-bottom: 0;">Email: <a href="mailto:jkt@indoutensil.com" class="text-black font-bold">jkt@indoutensil.com</a></p> 
                     <p style="margin-bottom: 0;">WA: +62-811-180-8303</p> 
                 </div> 
             </div>
