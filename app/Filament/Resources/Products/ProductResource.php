@@ -41,6 +41,12 @@ class ProductResource extends Resource
             ->schema([
                 Section::make()->schema([
                     TextInput::make('name')
+                        ->label('Product Name')
+                        ->required()
+                        ->maxLength(255),
+
+                    TextInput::make('type')
+                        ->label('Product Type')
                         ->required()
                         ->maxLength(255),
                     Repeater::make('detail')

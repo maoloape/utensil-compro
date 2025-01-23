@@ -36,12 +36,22 @@
         opacity: 1;
         transform: translateY(0);
     }
+
+    #product-slider {
+        overflow: hidden;
+    }
+
+    #product-slider > div {
+        width: 25%;
+        display: inline-block;
+    }
 </style>
 @endsection
 
 @section('content')
     @php
         $activeBrand = $brands->sortBy('id')->first();
+        $activeBrand->products()->get()
     @endphp
 
     <div class="w-full min-h-[100vh] bg-cover bg-center" id="background" style="background-image: url('{{ $activeBrand->getCoverBackgroundUrl }}');">
@@ -61,7 +71,7 @@
                                     class="shrink-0 w-1/3 px-6 clickable-slide" 
                                     data-index="{{ $index }}"
                                     data-cover-background-url="{{ $brand->getFirstMediaUrl('brand-cover-background') }}" 
-                                    data-id="{{ $brand->id }}"
+                                    data-id="{{ $brand->id }}" 
                                     data-logo-url="{{ $brand->getFirstMediaUrl('brand-logo') }}"
                                 >
                                     <div class="relative h-[30rem] rounded-[16px] shadow-lg bg-cover bg-center cursor-pointer" 
@@ -103,48 +113,27 @@
             </div>
             <div class="absolute h-full bg-[#009ac7]"></div>
             <div class="flex justify-center items-center">
-                <button id="prevBtn" class="w-10 h-10 border border-white rounded-full flex items-center justify-center mr-4">
-                <span class="text-white text-[1rem] font-bold">&lt;</span>
+                <button id="prevProduct" class="w-10 h-10 border border-white rounded-full flex items-center justify-center mr-4">
+                    <span class="text-white text-[1rem] font-bold">&lt;</span>
                 </button>
-                <div class="grid grid-cols-4 gap-4 pb-12">
-                    <div class="flex-1 px-6">
-                        <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="w-auto h-12 mb-4">
-                            <img src="{{ asset('assets/asset/product1.png') }}" alt="Product 1" class="w-auto h-40 mb-4">
-                            <h3 class="text-center font-bold text-xl">Forte</h3>
-                            <p class="text-center text-gray-500">Mirror Polished</p>
-                        </div>
-                    </div>
+                <div id="product-slider" class="grid grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
+                    <!-- Produk akan diperbarui secara dinamis -->
+                </div>
                 
-                    <div class="flex-1 px-6">
-                        <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="w-auto h-12 mb-4">
-                            <img src="{{ asset('assets/asset/product2.png') }}" alt="Product 2" class="w-auto h-40 mb-4">
-                            <h3 class="text-center font-bold text-xl">Silicone Spatula</h3>
-                            <p class="text-center text-gray-500">Silicone Tools</p>
+                {{-- <div id="product-slider" class="grid grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
+                    @foreach($activeBrand->products()->get() as $product)
+                        <div class="flex-1 px-6" style="width: 25%; display: inline-block;">
+                            <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                                <img src="{{ $activeBrand->getLogoUrlAttribute() }}" alt="Logo" class="w-auto h-12 mb-4">
+                                <img src="{{ $product->getFirstMediaUrl('product') }}" alt="Product" class="w-auto h-40 mb-4">
+                                <h3 class="text-center font-bold text-xl">{{ $product->name }}</h3>
+                                <p class="text-center text-gray-500">{{ $product->type }}</p>
+                            </div>
                         </div>
-                    </div>
-                
-                    <div class="flex-1 px-6">
-                        <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="w-auto h-12 mb-4">
-                            <img src="{{ asset('assets/asset/product3.png') }}" alt="Product 3" class="w-auto h-40 mb-4">
-                            <h3 class="text-center font-bold text-xl">Serrated Peeler</h3>
-                            <p class="text-center text-gray-500">Peeler</p>
-                        </div>
-                    </div>
-                
-                    <div class="flex-1 px-6">
-                        <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="w-auto h-12 mb-4">
-                            <img src="{{ asset('assets/asset/product4.png') }}" alt="Product 4" class="w-auto h-40 mb-4">
-                            <h3 class="text-center font-bold text-xl">Coffee Tumbler</h3>
-                            <p class="text-center text-gray-500">Drinking</p>
-                        </div>
-                    </div>
-                </div>                
-                <button id="nextBtn" class="w-10 h-10 border border-white rounded-full flex items-center justify-center ml-4">
-                <span class="text-white text-[1rem] font-bold">&gt;</span>
+                    @endforeach
+                </div> --}}
+                <button id="nextProduct" class="w-10 h-10 border border-white rounded-full flex items-center justify-center ml-4">
+                    <span class="text-white text-[1rem] font-bold">&gt;</span>
                 </button>
             </div>
             <div class="py-12">
@@ -152,36 +141,11 @@
             </div>
         </div>
     </div>
-
-    <div class="w-full py-16 bg-[#2a2a2a]">
-        <div class="container mx-auto flex flex-col lg:flex-row gap-8">
-            <div class="lg:w-1/2 text-right">
-                <div class="flex justify-end mb-4">
-                    <div class="h-1 w-full rounded-lg bg-[#009ac7]"></div>
-                </div>
-                <h1 class="text-[98px] text-white font-bold mb-4">Established <br> in <span class="text-[#009ac7]">1966</span></h1>
-                <a class="text-lg text-white borde px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a>
-            </div>
-            <div class="lg:w-1/2 text-left">
-                <p class="text-2xl text-white mb-8">PT Indonesia Utensil is an Indonesian stainless kitchenware
-                    manufacturer, located in Bandung, Jawa Barat. We have been
-                    established since 1966.
-                    <br>
-                    <br>
-                    We started as a manufacturer of stainless steel cutlery. As time
-                    progresses, we expanded our production to other related
-                    household items, such as kitchen knives, kitchen gadgets & tools.
-                    Today, we continue to make a variety of household items, from
-                    kitchen tools to lifestyle products such as coffee manual brewing
-                    products. Our brands include Tanica, Edelmann, Vinox
-                </p>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('script')
 <script>
+    // Slider utama
     const slider = document.getElementById("slider");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
@@ -236,6 +200,10 @@
         const progress = ((realIndex + 1) / totalSlides) * 100;
         const progressFill = document.getElementById("progressFill");
         progressFill.style.width = `${progress}%`;
+
+        // Muat produk berdasarkan slide aktif
+        const brandId = activeSlide.getAttribute('data-brand-id');
+        fetchProductsByBrand(brandId);
     }
 
     function checkForReset() {
@@ -298,5 +266,35 @@
 
     updateSlider();
     autoSlide();
+
+    function fetchProductsByBrand(brandId) {
+        const productContainer = document.getElementById("product-slider"); 
+        productContainer.innerHTML = "<p>Loading products...</p>";
+
+        fetch(`/products-by-brand/${brandId}`)
+            .then(response => response.json())
+            .then(data => {
+                productContainer.innerHTML = "";
+                data.forEach(product => {
+                    const productElement = document.createElement("div");
+                    productElement.classList.add("flex-1", "px-6"); 
+                    productElement.style.width = "25%";
+                    productElement.innerHTML = `
+                        <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                            <img src="${product.image}" alt="${product.name}" class="w-auto h-40 mb-4">
+                            <h3 class="text-center font-bold text-xl">${product.name}</h3>
+                            <p class="text-center text-gray-500">${product.type}</p>
+                        </div>
+                    `;
+                    productContainer.appendChild(productElement);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading products:", error);
+                productContainer.innerHTML = "<p>Failed to load products.</p>";
+            });
+    }
+
 </script>
+
 @endsection

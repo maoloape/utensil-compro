@@ -38,83 +38,18 @@
 @endsection
 
 @section('content')
-
-    <!-- Section 1 -->
-    <div class="max-w-screen-xl mx-auto pt-32">
-        <div class="py-12">
-            <div class="flex flex-col lg:flex-row gap-4">
-                <div class="lg:w-1/3 text-left">
-                    <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mb-9 w-auto h-24">
-                    <h1 class="text-4xl text-white font-bold mb-4">Welcome to PT Indonesia Utensil</h1>
-                    <p class="text-lg text-white mb-8">Your trusted kitchenware manufacturer since 1966.</p>
-                    <a class="see-product text-lg mb-8" href="/product">See Product</a>
-                </div>
-                
-                <!-- Kolom kanan untuk grid item -->
-                <div class="lg:w-2/3 grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="relative h-96 rounded-lg shadow-lg bg-cover bg-center" style="background-image: url('{{ asset('assets/asset/background.jpg') }}');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent rounded-lg">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                        </div>
-                    </div>
-                    <div class="relative h-96 rounded-lg shadow-lg bg-cover bg-center" style="background-image: url('{{ asset('assets/asset/background.jpg') }}');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent rounded-lg">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                        </div>
-                    </div>
-                    <div class="relative h-96 rounded-lg shadow-lg bg-cover bg-center" style="background-image: url('{{ asset('assets/asset/background.jpg') }}');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent rounded-lg">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                        </div>
-                    </div>
-                    <div class="relative h-96 rounded-lg shadow-lg bg-cover bg-center" style="background-image: url('{{ asset('assets/asset/background.jpg') }}');">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-800 to-transparent rounded-lg">
-                            <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="max-w-screen-xl mx-auto mt-0 py-16 bg-gradient-to-t from-gray-800 to-transparent">
-    </div>
-
-    {{-- Section 2 --}}
-
-    <div class="max-w-screen-xl mx-auto mt-0 py-16 bg-gray-800">
-        <div class="text-center">
-            <h1 class="text-4xl font-bold mb-4 text-white" style="font-size: 54px">-- PRODUK PILIHAN --</h1>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="relative h-96 rounded-lg shadow-lg bg-white">
-                    <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                </div>
-                <div class="relative h-96 rounded-lg shadow-lg bg-white">
-                    <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                </div>
-                <div class="relative h-96 rounded-lg shadow-lg bg-white">
-                    <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                </div>
-                <div class="relative h-96 rounded-lg shadow-lg bg-white">
-                    <img src="{{ asset('assets/asset/logo.png') }}" alt="Logo" class="mt-72 mx-auto w-auto h-auto">
-                </div>
-            </div>
-            <div class="py-8">
-                <a class="see-product text-4xl mb-4" href="/product" style="margin-top:30px;">All Product</a>
-            </div>
-        </div>
-    </div>
-
     {{-- section 3 --}}
-    <div class="max-w-screen-xl mx-auto py-32 bg-gray-800">
-        <div class="flex flex-col lg:flex-row gap-8">
+    <div class="w-full py-16 bg-[#2a2a2a]">
+        <div class="container mx-auto flex flex-col lg:flex-row gap-8">
             <div class="lg:w-1/2 text-right">
-                <h1 class="text-4xl text-white font-bold mb-4">---------------------------------------</h1>
-                <h1 class="text-4xl text-white font-bold mb-4" style="font-size: 98px">Established in 1966</h1>
-                <a class="see-product text-lg mb-8" href="/about">Read More</a>
+                <div class="flex justify-end mb-4">
+                    <div class="h-1 w-full rounded-lg bg-[#009ac7]"></div>
+                </div>
+                <h1 class="text-[98px] text-white font-bold mb-4">Established <br> in <span class="text-[#009ac7]">1966</span></h1>
+                <a class="text-lg text-white borde px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a>
             </div>
             <div class="lg:w-1/2 text-left">
-                <p class="text-lg text-white mb-8" style="font-size:24px">PT Indonesia Utensil is an Indonesian stainless kitchenware
+                <p class="text-2xl text-white mb-8">PT Indonesia Utensil is an Indonesian stainless kitchenware
                     manufacturer, located in Bandung, Jawa Barat. We have been
                     established since 1966.
                     <br>
@@ -124,7 +59,7 @@
                     household items, such as kitchen knives, kitchen gadgets & tools.
                     Today, we continue to make a variety of household items, from
                     kitchen tools to lifestyle products such as coffee manual brewing
-                    products. Our brands include Tanica, Edelmann, Vinox.
+                    products. Our brands include Tanica, Edelmann, Vinox
                 </p>
             </div>
         </div>

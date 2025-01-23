@@ -12,7 +12,7 @@ class Product extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['brand_id', 'category_id', 'slug', 'name', 'detail', 'active'];
+    protected $fillable = ['brand_id', 'category_id', 'slug', 'name', 'detail', 'active', 'type'];
 
     protected $casts = [
         'detail' => 'array',
@@ -43,6 +43,11 @@ class Product extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('product')->singleFile();
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->getFirstMediaUrl('product') ?: asset('images/default-product.jpg');
     }
 
     public function brand()
