@@ -1,4 +1,4 @@
-<footer class="bg-gray-800 text-white">
+<footer class="bg-gray-800 text-white max-h-screen">
     <div class="flex flex-col">
         <div class="flex flex-col lg:flex-row w-full items-center gap-8 bg-[#2a2a2a]">
             <div class="w-full lg:w-1/2 flex justify-center lg:justify-start relative">

@@ -26,15 +26,23 @@ class Category extends Model implements HasMedia
         });
     }
 
+    // public function registerMediaCollections(): void
+    // {
+    //     $this->addMediaCollection('category')->singleFile();
+    // }
+
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('category')->singleFile();
+        $this->addMediaCollection('image')->singleFile();
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->getFirstMediaUrl('image');
     }
 
     public function products()
     {
         return $this->belongsToMany(Product::class);
     }
-
-    
 }

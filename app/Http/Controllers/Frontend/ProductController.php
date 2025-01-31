@@ -3,21 +3,35 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Page;
+use App\Models\Products\Brand;
+use App\Models\Products\Category;
 use App\Models\Products\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('frontend.product');
-    // }
-
-    public function getProductsByBrand($id)
+    public function index(Request $request)
     {
-        $products = Product::where('brand_id', $id)->get();
+        $brands = Brand::all();
+        $categories = Category::all();
+        $page = Page::first(); 
 
-        return response()->json($products);
+        $brandId = $request->input('brand_id');
+        $categoryIds = $request->input('category_ids');
+
+        $products = Product::query();
+
+        if ($brandId) {
+            $products->where('brand_id', $brandId);
+        }
+
+        if ($categoryIds) {
+            $products->whereIn('category_id', $categoryIds);
+        }
+
+        $products = $products->get();
+
+        return view('frontend.product', compact('brands', 'categories', 'products','page'));
     }
-
 }

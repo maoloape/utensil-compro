@@ -103,7 +103,6 @@
         </div>
     </div>
 
-
     <div class="w-full mt-0 py-16 bg-[#2a2a2a]">
         <div class="text-center container">
             <div class="flex justify-center items-center mb-4">
@@ -117,21 +116,9 @@
                     <span class="text-white text-[1rem] font-bold">&lt;</span>
                 </button>
                 <div id="product-slider" class="grid grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
-                    <!-- Produk akan diperbarui secara dinamis -->
+                    <!-- Produk akan diperbarui secara dinamis -->z
                 </div>
                 
-                {{-- <div id="product-slider" class="grid grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
-                    @foreach($activeBrand->products()->get() as $product)
-                        <div class="flex-1 px-6" style="width: 25%; display: inline-block;">
-                            <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                                <img src="{{ $activeBrand->getLogoUrlAttribute() }}" alt="Logo" class="w-auto h-12 mb-4">
-                                <img src="{{ $product->getFirstMediaUrl('product') }}" alt="Product" class="w-auto h-40 mb-4">
-                                <h3 class="text-center font-bold text-xl">{{ $product->name }}</h3>
-                                <p class="text-center text-gray-500">{{ $product->type }}</p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div> --}}
                 <button id="nextProduct" class="w-10 h-10 border border-white rounded-full flex items-center justify-center ml-4">
                     <span class="text-white text-[1rem] font-bold">&gt;</span>
                 </button>
@@ -141,6 +128,69 @@
             </div>
         </div>
     </div>
+
+    <div class="bg-[#2a2a2a]">
+        <div class="container mx-auto flex flex-row justify-center items-center gap-8 py-12">
+            <div class="w-1/2 text-right">
+                <div class="flex justify-end mb-4">
+                    <div class="h-1 w-full bg-[#009ac7] rounded-[2rem]"></div>
+                </div>
+                <h1 class="text-[98px] text-white font-bold mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
+                <a class="text-lg text-white borde px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a>
+            </div>
+        
+            <div class="w-1/2 text-left">
+                <h1 class="text-2xl text-white mb-8">
+                    {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
+                </h1>
+            </div>
+        </div>        
+    </div>
+    
+    <div class="w-full">
+        <div class="grid grid-cols-4 grid-rows-2 h-screen">
+            <div class="col-span-2 row-span-1 bg-gray-200 flex items-center justify-center text-white text-2xl font-bold" style="background-image: url('flatware.jpg'); background-size: cover;">
+                Flatware
+            </div>
+            
+            <div class="col-span-1 row-span-1 bg-gray-400 flex items-center justify-center text-white text-2xl font-bold rotate-180 [writing-mode:vertical-rl]" style="background-image: url('drinking.jpg'); background-size: cover;">
+                Drinking
+            </div>
+            
+            <div class="col-span-1 row-span-2 bg-gray-600 flex items-center justify-center text-white text-2xl font-bold" style="background-image: url('knives.jpg'); background-size: cover;">
+                Kitchen Knives
+            </div>
+            
+            <div class="col-span-1 row-span-1 bg-gray-300 flex items-center justify-center text-white text-2xl font-bold rotate-180 [writing-mode:vertical-rl]" style="background-image: url('tabletop.jpg'); background-size: cover;">
+                Tabletop
+            </div>
+            
+            <div class="col-span-2 row-span-1 bg-gray-500 flex items-center justify-center text-white text-2xl font-bold" style="background-image: url('gadgets.jpg'); background-size: cover;">
+                Kitchen Gadgets & Tools
+            </div>
+        </div>
+    </div>
+    
+    <div class="w-full max-h-screen bg-cover" style="background-image: url('assets/cover/cover-promot-home.png') ">
+        <div class="container">
+            <div class="text-right py-16">
+                <div class="flex justify-end mb-4">
+                    <div class="h-1 w-[40%] bg-[#009ac7] rounded-[2rem]"></div>
+                </div>
+                <h1 class="text-[98px] text-black font-bold mb-4">Promotional <br> Product</h1>
+                <div class="flex justify-end mb-4">
+                    <p class="text-[1.775rem]"> Countless institutions have used our products in their various <br>
+                        advertisement campaigns to promote the quality and versatility of <br>
+                        their own products or services. Our products ensure your <br>
+                        promotion will be successful, impactful and sustainable through a <br>
+                        range of high market appeal quality products.</p>
+                </div>
+                
+                <a class="text-lg text-black borde px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a>
+            </div>
+        </div>        
+    </div>
+
 @endsection
 
 @section('script')
@@ -202,7 +252,8 @@
         progressFill.style.width = `${progress}%`;
 
         // Muat produk berdasarkan slide aktif
-        const brandId = activeSlide.getAttribute('data-brand-id');
+        const brandId = activeSlide.getAttribute('data-id');
+        window.activeSlide = activeSlide;
         fetchProductsByBrand(brandId);
     }
 
@@ -281,7 +332,7 @@
                     productElement.style.width = "25%";
                     productElement.innerHTML = `
                         <div class="relative h-[30rem] w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                            <img src="${product.image}" alt="${product.name}" class="w-auto h-40 mb-4">
+                            <img src="${product.image_url}" alt="${product.name}" class="w-auto h-40 mb-4">
                             <h3 class="text-center font-bold text-xl">${product.name}</h3>
                             <p class="text-center text-gray-500">${product.type}</p>
                         </div>
