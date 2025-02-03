@@ -25,9 +25,6 @@ class Product extends Model implements HasMedia
     protected static function booted()
     {
         static::saving(function ($product) {
-            // if (request()->hasFile('image')) {
-            //     $product->addMediaFromRequest('image')->toMediaCollection('product');
-            // }
             if (empty($product->slug)) {
                 $product->slug = Str::slug($product->name);
             }
@@ -47,18 +44,8 @@ class Product extends Model implements HasMedia
 
     public function getImageUrlAttribute(): ?string
     {
-        return $this->getFirstMediaUrl('image');
+        return $this->getFirstMediaUrl('products');
     }
-
-    // public function registerMediaCollections(): void
-    // {
-    //     $this->addMediaCollection('image')->singleFile();
-    // }
-
-    // public function getImageUrlAttribute()
-    // {
-    //     return $this->getFirstMediaUrl('image') ?: asset('images/default-product.jpg');
-    // }
 
     public function brand()
     {

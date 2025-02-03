@@ -33,12 +33,12 @@ class Category extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('image')->singleFile();
+        $this->addMediaCollection('category')->singleFile();
     }
 
     public function getImageUrlAttribute(): ?string
     {
-        return $this->getFirstMediaUrl('image');
+        return $this->getFirstMediaUrl('category');
     }
 
     public function products()

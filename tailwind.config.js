@@ -10,6 +10,10 @@ export default {
         boxShadow: {
           'shadow-2xl': '100px 0 0px rgba(0, 0, 0, 1)', 
         },},
+        fontFamily: {
+          raleway: ['Raleway', 'sans-serif'],
+          bodoniModa: ['Bodoni Moda', 'serif'],
+        },
     },
     plugins: [],
   }

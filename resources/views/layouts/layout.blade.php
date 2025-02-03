@@ -11,7 +11,7 @@
             flex-direction: column;
             min-height: 100vh;
             position: relative;
-            font-family: 'Myriad Pro', sans-serif;
+            font-family: "Raleway", serif;
         }
 
         .container{

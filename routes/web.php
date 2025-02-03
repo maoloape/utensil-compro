@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController;
 use App\Http\Controllers\Frontend\PromotController;
+use App\Models\Products\Brand;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,10 @@ Route::get('/promotion', [PromotController::class, 'index'])->name('promotion');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 
 //API
+Route::get('/brands/{brandId}/logo-hitam', function ($brandId) {
+    $brand = Brand::find($brandId);
+    return $brand->getLogoHitamUrlAttribute();
+});
+
 Route::get('/api/brands/{id}/products', [BrandController::class, 'getProducts']);
 Route::get('/products-by-brand/{id}', [HomeController::class, 'fetchProductsByBrand']);
