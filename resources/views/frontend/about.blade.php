@@ -36,8 +36,8 @@
                 </div>
             
                 <div class="lg:w-1/2 w-full text-left">
-                    <h1 class="lg:text-2xl text-lg text-white mb-8">
-                        {!! str_replace('<strong>', '<strong style="color: #0298c6; font-weight: normal;">', $about->about_content) !!}
+                    <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8" style="line-height: 1.25">
+                        {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
                     </h1>
                     <div class="flex-row gap-4 hidden lg:flex">
                         @foreach($brands as $brand)

@@ -99,7 +99,7 @@
                                     data-logo-hitam="{{ $brand->getFirstMediaUrl('brand-logo-hitam') }}"
                                     data-description="{{ str_replace('&nbsp;', '', strip_tags($brand->description)) }}"
                                 >
-                                    <div class="relative h-[15rem] lg:h-[30rem] rounded-[16px] shadow-lg bg-cover bg-center cursor-pointer lg:p-0 p-2" 
+                                    <div class="relative h-[20rem] lg:h-[30rem] rounded-[16px] shadow-lg bg-cover bg-center cursor-pointer lg:p-0 p-2" 
                                         style="background-image: url('{{ $brand->getFirstMediaUrl('brand-cover') }}');">
                                         <div class="absolute inset-0 bg-gradient-to-b from-black/10 to-black/90 rounded-[16px] flex flex-col items-center justify-end p-6">
                                             <img src="{{ $brand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="w-auto h-16 pb-2 lg:h-20 lg:pb-8 mx-0">
@@ -111,27 +111,17 @@
                         </div>
                     </div>
                 
-                    <div class="hidden items-center justify-center mt-6 space-x-4 md:flex">
-                        <button id="prevBtn" class="lg:w-20 lg:h-20 md:w-10 md:h-10 border border-white rounded-full flex items-center justify-center">
-                            <span class="text-white text-[2rem] font-bold">&lt;</span>
+                    <div class="items-center justify-center mt-6 space-x-4 flex">
+                        <button id="prevBtn" class="lg:w-20 lg:h-20 w-10 h-10 border border-white rounded-full flex items-center justify-center">
+                            <span class="text-white text-[1rem] lg:text-[2rem] font-bold">&lt;</span>
                         </button>
-                        <button id="nextBtn" class="lg:w-20 lg:h-20 md:w-10 md:h-10 border border-white rounded-full flex items-center justify-center">
-                            <span class="text-white text-[2rem] font-bold">&gt;</span>
+                        <button id="nextBtn" class="lg:w-20 lg:h-20 w-10 h-10 border border-white rounded-full flex items-center justify-center">
+                            <span class="text-white text-[1rem] lg:text-[2rem] font-bold">&gt;</span>
                         </button>
                         <div id="progressBar" class="flex-1 h-1 bg-white relative">
                             <div id="progressFill" class="absolute h-full bg-[#009ac7] transition-all duration-500"></div>
                         </div>
                         <span id="sliderNumber" class="text-white font-bold text-[4rem]">01</span>
-                    </div>
-
-                    <div class="md:hidden items-center justify-center mt-6 space-x-4 flex">
-                        <button id="prevBtnMbl" class="lg:w-20 lg:h-20 w-10 h-10 border border-white rounded-full flex items-center justify-center">
-                            <span class="text-white text-[1rem] lg:text-[2rem] font-bold">&lt;</span>
-                        </button>
-                        <span id="sliderNumberMobile" class="text-white font-bold text-[4rem]">01</span>
-                        <button id="nextBtnMbl" class="lg:w-20 lg:h-20 w-10 h-10 border border-white rounded-full flex items-center justify-center">
-                            <span class="text-white text-[1rem] lg:text-[2rem] font-bold">&gt;</span>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -143,7 +133,7 @@
         <div class="text-center container">
             <div class="flex justify-center items-center mb-4">
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] mr-4 mb-2"></div>
-                <h1 class="text-[4rem] text-white">PRODUK PILIHAN</h1>
+                <h1 class="lg:text-[4rem] text-white">PRODUK PILIHAN</h1>
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] ml-4 mb-2"></div>
             </div>
             <div class="absolute h-full bg-[#009ac7]"></div>
@@ -180,11 +170,10 @@
             </div>
             
             <div class="w-full md:w-1/2 lg:text-left md:text-center">
-                <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8">
+                <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8" style="line-height: 1.25">
                     {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
                 </h1>
                 <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 inline-block lg:hidden" href="/about">Read More</a>
-
             </div>
         </div>        
     </div>
@@ -253,8 +242,8 @@
         @foreach($categories as $category)
             <a href="/product" class="col-span-1 text-decoration-none overflow-hidden w-full h-full"
                 style="background-image: url('{{ $category->getImageUrlAttribute() }}'); background-size: cover;">
-                <div class="w-full h-[15rem] bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="px-12 flex flex-col">
+                <div class="w-full h-[15rem] bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end py-4 px-4 transition-transform duration-100 scale-100 hover:scale-110">
+                    <div class="flex flex-col">
                         <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
                         <p class="text-white text-[2rem]">{{ $category->name }}</p>
                     </div>
@@ -280,16 +269,16 @@
                         range of high market appeal quality products.</p>
                 </div>
                 
-                <a class="text-[1rem] lg:text-lg text-black border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="/promot">See Product</a>
+                <a class="text-[1rem] lg:text-lg text-black border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="/promot">Read More</a>
             </div>
         </div>
     </div>
     {{-- Mobile --}}
     <div class="w-full max-h-screen bg-cover" style="background-image: url('assets/cover/cover-promot-home.png') ">
-        <div class="lg:hidden w-full max-h-screen bg-[#2a2a2a] bg-opacity-50">
+        <div class="lg:hidden w-full max-h-screen bg-[#2a2a2a] bg-opacity-80">
             <div class="container">
-                <div class="text-right py-16 md:py-20 lg:py-24">
-                    <div class="flex justify-end mb-4">
+                <div class="text-left py-16 md:py-20 lg:py-24">
+                    <div class="flex justify-start mb-4">
                         <div class="h-1 w-[40%] bg-[#009ac7] rounded-[2rem]"></div>
                     </div>
                     <h1 class="text-[48px] md:text-[64px] lg:text-[98px] text-white font-bold mb-4">Promotional <br> Product</h1>
@@ -301,7 +290,7 @@
                             range of high market appeal quality products.</p>
                     </div>
                     
-                    <a class="text-lg text-white border px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a>
+                    <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="/promot">Read More</a>
                 </div>
             </div>
         </div>   
@@ -416,19 +405,19 @@
         });
     });
 
-    prevBtn.addEventListener("click", () => {
-        currentSlide--;
-        updateSlider();
-        checkForReset();
-        autoSlide();
-    });
+    // prevBtn.addEventListener("click", () => {
+    //     currentSlide--;
+    //     updateSlider();
+    //     checkForReset();
+    //     autoSlide();
+    // });
 
-    nextBtn.addEventListener("click", () => {
-        currentSlide++;
-        updateSlider();
-        checkForReset();
-        autoSlide();
-    });
+    // nextBtn.addEventListener("click", () => {
+    //     currentSlide++;
+    //     updateSlider();
+    //     checkForReset();
+    //     autoSlide();
+    // });
 
     updateSlider();
     autoSlide();
@@ -456,7 +445,7 @@
             }
 
             productElement.innerHTML = `
-                <div class="relative h-[20rem] w-[15rem] lg:h-[30rem] lg:w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                <div class="relative h-[24rem] w-[13.25rem] lg:h-[30rem] lg:w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
                     <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto h-12 mt-8 lg:mt-0 mb-2">
                     <img src="${product.image_url}" alt="${product.name}" class="w-auto h-40 mb-4">
                     <h3 class="text-center font-bold text-xl">${product.name}</h3>

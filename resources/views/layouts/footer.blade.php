@@ -21,8 +21,8 @@
                 <h3 class="lg:text-[6rem]">Download <br> Our Catalogue</h3>
                 <form class="mt-4 w-full flex flex-row lg:flex-row items-center lg:items-start">
                     <input type="email" placeholder="Please insert your e-mail to get our catalogue"
-                        class="w-4/5 lg:w-1/2 bg-white text-white rounded-full px-4 py-2 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <button type="submit" class="border-2 border-[#009ac7] border-l-0 rounded-r-full hover:bg-blue-600 px-4 py-2 text-white font-semibold ml-[-0.9rem]">Submit</button>                
+                        class="w-4/5 lg:w-1/2 bg-white h-[2.75rem] text-white rounded-full px-4 py-2 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 z-10">
+                    <button type="submit" class="border-2 border-[#009ac7] border-l-0 rounded-r-full hover:bg-[#009ac7] px-4 py-2 text-white font-semibold ml-[-1.2rem] z-1">Submit</button>                
                 </form>
                 <p class="text-white pt-2"> Please insert your e-mail to get our catalogue</p>
             </div>

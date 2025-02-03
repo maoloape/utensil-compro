@@ -41,6 +41,10 @@ class PageResource extends Resource
                             ->label('Cover Page Promotion')
                             ->required()
                             ->collection('cover-page-promot'),
+                            SpatieMediaLibraryFileUpload::make('page_product')
+                            ->label('Cover Page Product')
+                            ->required()
+                            ->collection('cover-page-procduct'),
                     ]),
             ]);
     }

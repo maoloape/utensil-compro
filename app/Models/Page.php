@@ -43,4 +43,9 @@ class Page extends Model implements HasMedia
     {
         return $this->getFirstMediaUrl('cover-page-promot');
     }
+
+    public function getCoverPageProductAttribute()
+    {
+        return $this->getFirstMediaUrl('cover-page-procduct');
+    }
 }
