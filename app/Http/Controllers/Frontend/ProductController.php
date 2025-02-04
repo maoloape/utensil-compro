@@ -17,51 +17,26 @@ class ProductController extends Controller
         $categories = Category::all();
         $page = Page::first(); 
 
-        $brandId = $request->input('brand_id');
-        $categoryIds = $request->input('category_ids');
+        $brandName = $request->input('brand');  
+        $categoryNames = $request->input('category'); 
 
         $products = Product::query();
 
-        if ($brandId) {
-            $products->where('brand_id', $brandId);
-        }
+        if ($brandName) {
+            $brand = Brand::where('name', $brandName)->first();
+            if ($brand) {
+                $products->where('brand_id', $brand->id);
+            }
+        }        
 
-        if ($categoryIds) {
-            $products->whereIn('category_id', $categoryIds);
+        if ($categoryNames) {
+            $products->whereHas('categories', function ($query) use ($categoryNames) {
+                $query->whereIn('name', (array) $categoryNames);
+            });
         }
 
         $products = $products->with('media')->get();
 
-        return view('frontend.product', compact('brands', 'categories', 'products','page'));
+        return view('frontend.product', compact('brands', 'categories', 'products', 'page', 'brandName'));
     }
-
-     // public function index(Request $request)
-    // {
-    //     $brands = Brand::all();
-    //     $categories = Category::all();
-    //     $page = Page::first(); 
-
-    //     $brandId = $request->input('brand_id');
-    //     $categoryIds = $request->input('category_ids', []);
-
-    //     $products = Product::query();
-
-    //     if ($brandId) {
-    //         $products->where('brand_id', $brandId);
-    //     }
-
-    //     if ($categoryIds) {
-    //         $products->whereHas('categories', function ($query) use ($categoryIds) {
-    //             $query->whereIn('categories.id', (array) $categoryIds);
-    //         });
-    //     }
-
-    //     $products = $products->with('media')->paginate(9)->appends(request()->query());
-
-    //     if ($request->ajax()) {
-    //         return view('frontend.partials.products', compact('products'))->render();
-    //     }
-
-    //     return view('frontend.product', compact('brands', 'categories', 'products', 'page'));
-    // }
 }

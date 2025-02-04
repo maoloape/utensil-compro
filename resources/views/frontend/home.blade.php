@@ -84,7 +84,9 @@
                 <div class="lg:w-1/3 text-left md:w-1/2 w-full mb-6 lg:mb-0">
                     <img id="brand-logo" src="{{ $activeBrand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="mb-9 w-auto h-16 lg:h-24 top show">
                     <p id="brand-description" class="text-[1rem] lg:text-lg text-white mb-8 show"></p>
-                    <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="/product">See Product</a>
+                    <a id="see-product-link" class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="{{ route('product', ['brand' => $activeBrand->name]) }}">
+                        See Product
+                    </a>
                 </div>
                 <div class="lg:w-2/3 relative md:w-1/4">
                     <div id="slider-container" class="overflow-hidden">
@@ -98,6 +100,7 @@
                                     data-logo-url="{{ $brand->getFirstMediaUrl('brand-logo') }}"
                                     data-logo-hitam="{{ $brand->getFirstMediaUrl('brand-logo-hitam') }}"
                                     data-description="{{ str_replace('&nbsp;', '', strip_tags($brand->description)) }}"
+                                    data-brand="{{ $brand->name }}"
                                 >
                                     <div class="relative h-[20rem] lg:h-[30rem] rounded-[16px] shadow-lg bg-cover bg-center cursor-pointer lg:p-0 p-2" 
                                         style="background-image: url('{{ $brand->getFirstMediaUrl('brand-cover') }}');">
@@ -182,7 +185,7 @@
     {{-- Desktop --}}
     <div class="w-full hidden lg:inline">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-screen">
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
+            <a href="/product?category%5B%5D=Flateware" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
                 style="background-image: url('assets/cover/cover-category-flatware.png'); background-size: cover;">
                 <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
                     <div class="pl-12 flex flex-col">
@@ -192,7 +195,7 @@
                 </div>
             </a>
  
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block overflow-hidden"
+            <a href="/product?category%5B%5D=Drinking" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block overflow-hidden"
                 style="background-image: url('assets/cover/cover-category-drinking.png'); background-size: cover; background-position: center;">
                 
                 <div class="absolute left-0 bottom-0 flex justify-start items-end p-4"
@@ -204,7 +207,7 @@
                 </div>
             </a>
 
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 text-decoration-none overflow-hidden" 
+            <a href="/product?category%5B%5D=Kitchen+Knives" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 text-decoration-none overflow-hidden" 
                 style="background-image: url('assets/cover/cover-category-kitchenKnives.png'); background-size: cover;">
                 <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
                     <div class="pl-12 flex flex-col">
@@ -214,7 +217,7 @@
                 </div>
             </a>
             
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block"
+            <a href="/product?category%5B%5D=Tabletop" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block"
                 style="background-image: url('assets/cover/cover-category-tabletop.png'); background-size: cover; background-position: center;">
                 
                 <div class="absolute right-0 top-0 flex justify-start items-end h-full p-4"
@@ -226,7 +229,7 @@
                 </div>
             </a>
 
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
+            <a href="/product?category%5B%5D=Kitchen+Gadgets+%26+Tools" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
                 style="background-image: url('assets/cover/cover-category-kitchenGadgetsTools.png'); background-size: cover;">
                 <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
                     <div class="pl-12 flex flex-col">
@@ -240,8 +243,8 @@
     {{-- Mobile --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:hidden">
         @foreach($categories as $category)
-            <a href="/product" class="col-span-1 text-decoration-none overflow-hidden w-full h-full"
-                style="background-image: url('{{ $category->getImageUrlAttribute() }}'); background-size: cover;">
+        <a href="/product?category%5B%5D={{ str_replace(' ', '+', str_replace('&', '%26', $category->name)) }}" class="col-span-1 text-decoration-none overflow-hidden w-full h-full"
+            style="background-image: url('{{ $category->getImageUrlAttribute() }}'); background-size: cover;">
                 <div class="w-full h-[15rem] bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end py-4 px-4 transition-transform duration-100 scale-100 hover:scale-110">
                     <div class="flex flex-col">
                         <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
@@ -327,6 +330,11 @@
     slider.style.transform = `translateX(-${visibleSlides * slideWidth}px)`; 
     currentSlide = visibleSlides;
 
+    function updateSeeProductLink(brandName) {
+        const seeProductLink = document.getElementById("see-product-link");
+        seeProductLink.href = `/product?brand=${encodeURIComponent(brandName)}`;
+    }
+
     function updateSlider() {
         slider.style.transition = "transform 0.5s ease-in-out";
         slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
@@ -338,6 +346,7 @@
         const brandCoverBackgroundUrl = activeSlide.getAttribute('data-cover-background-url');
         const getLogoUrl = activeSlide.getAttribute('data-logo-url');
         const brandDescription = activeSlide.getAttribute('data-description');
+        const brandName = activeSlide.getAttribute('data-brand');
 
         background.style.backgroundImage = `url(${brandCoverBackgroundUrl})`;
         brandLogo.src = getLogoUrl;
@@ -354,6 +363,8 @@
         const progress = ((realIndex + 1) / totalSlides) * 100;
         const progressFill = document.getElementById("progressFill");
         progressFill.style.width = `${progress}%`;
+
+        updateSeeProductLink(brandName);
 
         // Muat produk berdasarkan slide aktif
         const brandId = activeSlide.getAttribute('data-id');
@@ -393,31 +404,6 @@
     }
 
     const slides = document.querySelectorAll(".clickable-slide");
-
-    slides.forEach(slide => {
-        slide.addEventListener("click", () => {
-            const targetIndex = parseInt(slide.getAttribute("data-index"), 10);
-            const realTarget = targetIndex + visibleSlides;
-            currentSlide = realTarget;
-
-            updateSlider();
-            autoSlide();
-        });
-    });
-
-    // prevBtn.addEventListener("click", () => {
-    //     currentSlide--;
-    //     updateSlider();
-    //     checkForReset();
-    //     autoSlide();
-    // });
-
-    // nextBtn.addEventListener("click", () => {
-    //     currentSlide++;
-    //     updateSlider();
-    //     checkForReset();
-    //     autoSlide();
-    // });
 
     updateSlider();
     autoSlide();

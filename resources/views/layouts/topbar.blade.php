@@ -2,7 +2,7 @@
     <div class="container max-w-screen-2xl mx-auto">
         <div class="flex justify-between items-center z-50">
             <a href="/" class="items-center text-white hidden md:flex">
-                <img src="{{ asset('assets/logo/logo-utensil.png') }}" alt="Logo" class="h-16" style="width: auto; height:75px;"> 
+                <img src="{{ asset('assets/logo/logo-utensil.png') }}" alt="Logo" class="h-16"> 
             </a>
             <a href="/" class="items-center text-white md:hidden flex">
                 <img src="{{ asset('assets/logo/logo-utensil-image.png') }}" alt="Logo" class="h-16" style="width: auto; height:45px;"> 
@@ -17,10 +17,10 @@
             </div>
         </div>
         <div class="hidden md:flex mt-12 space-x-12" id="nav-menu">
-            <a href="/about" class="text-white px-4 hover:text-yellow-400 transition">About Us</a>
-            <a href="/product" class="text-white px-4 hover:text-yellow-400 transition">Our Product</a>
-            <a href="/promotion" class="text-white px-4 hover:text-yellow-400 transition">Promotional Product</a>
-            <a href="/contact" class="text-white px-4 hover:text-yellow-400 transition">Contact Us</a>
+            <a href="/about" class="text-white hover:text-yellow-400 transition">About Us</a>
+            <a href="/product" class="text-white hover:text-yellow-400 transition">Our Product</a>
+            <a href="/promotion" class="text-white hover:text-yellow-400 transition">Promotional Product</a>
+            <a href="/contact" class="text-white hover:text-yellow-400 transition">Contact Us</a>
             <a href="https://wa.me/628111808303" class="text-white hover:text-yellow-400 transition" style="margin-left: 180px">+62-811-180-8303</a>
         </div>
     </div>

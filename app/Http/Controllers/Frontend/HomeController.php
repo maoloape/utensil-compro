@@ -16,8 +16,8 @@ class HomeController extends Controller
         $brands = Brand::orderBy('id', 'asc')->get();
         $product = Product::all();
         $about = About::first(); 
-        $categories = Category::all(); // Add this line
-        return view('frontend.home', compact('brands', 'product', 'about', 'categories')); // Update this line
+        $categories = Category::all(); 
+        return view('frontend.home', compact('brands', 'product', 'about', 'categories')); 
     }
 
     public function fetchProductsByBrand($brandId)

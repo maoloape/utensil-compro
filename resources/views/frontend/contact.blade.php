@@ -28,10 +28,19 @@
     }
 
     @media (max-width:768px) {
-    .gmap_canvas {
-        width: 1080px;
-        height: 240px;
+        .gmap_canvas {
+            width: 1080px;
+            height: 240px;
+        }
+
+        .office{
+            margin-top: 8rem;
+        }
     }
+    @media (min-width: 1537px) and (max-width: 1920px) {
+        .office {
+            margin-top: 0;
+        }
     }
 </style>
 
@@ -54,8 +63,8 @@
     </div>
 </div>
 
-<div class="bg-white mt-0">
-    <div class="container mx-auto flex flex-col lg:flex-row justify-center items-center gap-8 mt-0 pb-12">
+<div class="bg-white xl:mt-[16rem] lg:mt-0 office">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-center items-center gap-8 pb-12">
         <div class="lg:w-1/2 w-full lg:text-right px-4 lg:px-0 mb-0">
             <div class="flex justify-end mb-4">
                 <div class="h-1 w-[40rem] bg-[#009ac7] rounded-[2rem]"></div>

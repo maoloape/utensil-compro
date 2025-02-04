@@ -47,24 +47,28 @@
                 <h3 class="font-semibold">Brand</h3>
                 <ul class="mt-2 brand-filter">
                     @foreach ($brands as $brand)
-                        <li class="py-2 cursor-pointer" data-brand-id="{{ $brand->id }}" data-cover-background="{{ $brand->cover_background_url }}">
+                        <li class="py-2 cursor-pointer" 
+                            data-brand-name="{{ $brand->name }}" 
+                            data-cover-background="{{ $brand->cover_background_url }}">
                             <span>&bull;</span> {{ $brand->name }}
                         </li>
                     @endforeach
-                </ul>
+                </ul>                
             </div>
-            
+
             <!-- Categories Filter -->
             <div class="mt-6 lg:px-4">
-                <h3 class="font-semibold ">Categories</h3>
+                <h3 class="font-semibold">Categories</h3>
                 <ul class="mt-2 category-filter">
                     @foreach ($categories as $category)
-                        <li class="py-2 cursor-pointer" data-category-id="{{ $category->id }}">
+                        <li class="py-2 cursor-pointer" 
+                            data-category-name="{{ $category->name }}">
                             <span>&bull;</span> {{ $category->name }}
                         </li>
                     @endforeach
-                </ul>
+                </ul>                
             </div>
+
         </div>
         
         <!-- Produk -->
@@ -91,30 +95,45 @@
         const brandFilters = document.querySelectorAll('.brand-filter li');
         const categoryFilters = document.querySelectorAll('.category-filter li');
         const pageHeader = document.getElementById("page-header");
+        const clearButton = document.getElementById("clearFilters");
 
-        function filterProducts() {
-            const selectedBrandElement = document.querySelector('.brand-filter li.active');
-            const selectedBrand = selectedBrandElement ? selectedBrandElement.dataset.brandId : null;
-            const selectedCategories = Array.from(document.querySelectorAll('.category-filter li.active'))
-                .map((li) => li.dataset.categoryId);
+        function updateURL(selectedBrandName = null, selectedCategoryNames = []) {
+            const url = new URL(window.location.href);
 
-            const products = document.querySelectorAll('.product');
+            if (selectedBrandName) {
+                url.searchParams.set('brand', selectedBrandName);
+            } else {
+                url.searchParams.delete('brand');
+            }
 
-            products.forEach((product) => {
-                const productBrand = product.dataset.brandId;
-                const productCategories = product.dataset.categoryId.split(',');
+            url.searchParams.delete('category[]');
 
-                const brandMatch = !selectedBrand || productBrand === selectedBrand;
-                const categoryMatch = selectedCategories.length === 0 || selectedCategories.some(cat => productCategories.includes(cat));
-
-                if (brandMatch && categoryMatch) {
-                    product.classList.remove('hidden');
-                } else {
-                    product.classList.add('hidden');
-                }
+            selectedCategoryNames.forEach(catName => {
+                url.searchParams.append('category[]', catName);
             });
 
-            updateBackground(selectedBrandElement);
+            window.location.href = url.toString();
+        }
+
+        function initializeFilters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedBrandName = urlParams.get('brand');
+            const selectedCategoryNames = urlParams.getAll('category[]');
+
+            if (selectedBrandName) {
+                brandFilters.forEach(li => {
+                    if (li.dataset.brandName === selectedBrandName) {
+                        li.classList.add('active');
+                        updateBackground(li);
+                    }
+                });
+            }
+
+            categoryFilters.forEach(li => {
+                if (selectedCategoryNames.includes(li.dataset.categoryName)) {
+                    li.classList.add('active');
+                }
+            });
         }
 
         function updateBackground(selectedBrandElement) {
@@ -124,33 +143,52 @@
                     pageHeader.style.backgroundImage = `url('${coverBackground}')`;
                 }
             } else {
-                pageHeader.style.backgroundImage = `url('{{ $page->cover_page_contact }}')`;
+                pageHeader.style.backgroundImage = `url('{{ $page->cover_page_product }}')`;
             }
         }
 
-        brandFilters.forEach((li) => {
-            li.dataset.coverBackground = li.getAttribute('data-cover-background'); 
-
+        brandFilters.forEach(li => {
             li.addEventListener("click", function () {
-                brandFilters.forEach((b) => b.classList.remove("active"));
+                const selectedBrandName = this.dataset.brandName;
+
+                brandFilters.forEach(b => b.classList.remove("active"));
                 this.classList.add("active");
-                filterProducts();
+
+                const selectedCategoryNames = Array.from(document.querySelectorAll('.category-filter li.active'))
+                    .map(cat => cat.dataset.categoryName);
+
+                updateURL(selectedBrandName, selectedCategoryNames);
             });
         });
 
-        categoryFilters.forEach((li) => {
+        categoryFilters.forEach(li => {
             li.addEventListener("click", function () {
-                this.classList.toggle("active");
-                filterProducts();
+                this.classList.toggle("active"); 
+
+                const selectedBrandElement = document.querySelector('.brand-filter li.active');
+                const selectedBrandName = selectedBrandElement ? selectedBrandElement.dataset.brandName : null;
+
+                const selectedCategoryNames = Array.from(document.querySelectorAll('.category-filter li.active'))
+                    .map(cat => cat.dataset.categoryName);
+
+                updateURL(selectedBrandName, selectedCategoryNames);
             });
         });
 
-        document.querySelector('button').addEventListener("click", function () {
-            brandFilters.forEach((b) => b.classList.remove("active"));
-            categoryFilters.forEach((c) => c.classList.remove("active"));
-            filterProducts();
+        clearButton.addEventListener("click", function () {
+            brandFilters.forEach(b => b.classList.remove("active"));
+            categoryFilters.forEach(c => c.classList.remove("active"));
+
+            const url = new URL(window.location.href);
+            url.searchParams.delete('brand');
+            url.searchParams.delete('category[]');
+
+            window.location.href = url.toString();
         });
+
+        initializeFilters();
     });
 </script>
-
 @endsection
+
+
