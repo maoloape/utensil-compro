@@ -64,16 +64,16 @@
     </div>
 </div>
 
-<div class="bg-white office">
+<div class="bg-white mt-24 office">
     <div class="container mx-auto flex flex-col lg:flex-row justify-center items-center gap-8 pb-12">
         <div class="lg:w-1/2 w-full lg:text-right px-4 lg:px-0 mb-0">
             <div class="flex justify-end">
-                <div class="h-1 2xl:w-[40rem] xl:w-[28rem] bg-[#009ac7] rounded-[2rem]"></div>
+                <div class="h-1 2xl:w-[40rem] xl:w-[28rem] w-full bg-[#009ac7] rounded-[2rem]"></div>
             </div>
-            <h1 class="2xl:text-[7rem] xl:text-[6rem] text-black mb-4 font-[500]">Our <br> <strong class="text-[#0298c6]" style="font-weight: 500"> Offices </strong>  <h1>
+            <h1 class="2xl:text-[7rem] xl:text-[6rem] text-[5rem] text-black mb-4 font-[500]">Our <br> <strong class="text-[#0298c6]" style="font-weight: 500"> Offices </strong>  <h1>
         </div>
     
-        <div class="lg:w-1/2 w-full text-left mt-8">
+        <div class="lg:w-1/2 w-full text-left">
             <div class="flex flex-col lg:flex-row w-full lg:w-full pb-12 lg:pt-[6rem] px-4 text-black"> 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     @foreach($offices as $kantor)

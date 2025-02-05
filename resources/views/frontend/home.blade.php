@@ -46,7 +46,7 @@
         display: inline-block;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 769px) and (max-width: 1024px) {
         #slider-container {
             overflow-x: hidden;
             /* margin: 6px;
@@ -60,6 +60,27 @@
         }
         #slider > div {
             width: 100%;
+            margin: 0;
+            /* padding: 4px; */
+            padding-left: 4px;
+            padding-right: 12px; 
+        }
+    }
+
+    @media (max-width: 768px) {
+        #slider-container {
+            overflow-x: hidden;
+            /* margin: 6px;
+            padding: 2px; */
+        }
+        #slider {
+            width: 74%;
+            padding: 0;
+            margin: 0;
+
+        }
+        #slider > div {
+            width: 74%;
             margin: 0;
             /* padding: 4px; */
             padding-left: 4px;
@@ -83,7 +104,7 @@
 
                 <div class="lg:w-1/3 text-left md:w-1/2 w-full mb-6 lg:mb-0">
                     <img id="brand-logo" src="{{ $activeBrand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="mb-9 w-auto h-16 lg:h-24 top show">
-                    <p id="brand-description" class="xl:text-[1rem] 2xl:text-[1.4rem] lg:text-lg text-white mb-8 show"></p>
+                    <p id="brand-description" class="2xl:text-[1rem] xl:text-[0.8rem] lg:text-lg text-white mb-8 show"></p>
                     <a id="see-product-link" class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="{{ route('product', ['brand' => $activeBrand->name]) }}">
                         See Product
                     </a>
@@ -93,7 +114,7 @@
                         <div id="slider" class="flex items-center">
                             @foreach($brands as $index => $brand)
                                 <div 
-                                    class="shrink-0 w-1/3 md:w-1/4 lg:w-1/3 pr-4 clickable-slide overflow-y-hidden" 
+                                    class="shrink-0 w-1/3 md:w-1/4 lg:w-1/3 px-6 clickable-slide overflow-y-hidden" 
                                     data-index="{{ $index }}"
                                     data-cover-background-url="{{ $brand->getFirstMediaUrl('brand-cover-background') }}" 
                                     data-id="{{ $brand->id }}" 
@@ -136,7 +157,7 @@
         <div class="text-center container">
             <div class="flex justify-center items-center mb-4">
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] mr-4 mb-2"></div>
-                <h1 class="lg:text-[4rem] text-white">PRODUK PILIHAN</h1>
+                <h1 class="2xl:text-[4rem] xl:text-[3rem] text-white">PRODUK PILIHAN</h1>
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] ml-4 mb-2"></div>
             </div>
             <div class="absolute h-full bg-[#009ac7]"></div>
@@ -164,11 +185,11 @@
                 <div class="hidden lg:flex justify-center md:justify-end mb-0 lg:mb-4">
                     <div class="h-1 w-full md:w-1/2 bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="hidden lg:block xl:text-[7rem] 2xl:text-[9.4rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
+                <h1 class="hidden lg:block xl:text-[7rem] 2xl:text-[9.4rem] lg:text-[7rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                 <h1 class="lg:hidden text-[48px] md:text-[64px] text-left lg:text-[98px] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                     <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 hidden lg:inline-block" href="/about">Read More</a>
                 <div class="flex lg:hidden justify-center md:justify-end">
-                    <div class="h-1 w-full md:w-1/2 bg-[#009ac7] rounded-[2rem]"></div>
+                    <div class="h-1 w-full bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
             </div>
             
@@ -205,7 +226,7 @@
                                 <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div> 
                             @endif
                             
-                            <p class="text-{{ $category->text_color }} 2xl:text-[4.5rem] xl:text-[3rem] font-serif font-bold leading-none">{{ $category->name }}</p>
+                            <p class="text-{{ $category->text_color }} 2xl:text-[4.5rem] xl:text-[3rem] lg:text-[3rem] font-serif font-bold leading-none">{{ $category->name }}</p>
                         </div>
     
                     </div>

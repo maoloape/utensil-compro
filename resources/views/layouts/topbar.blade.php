@@ -1,8 +1,8 @@
 <nav class="navbar pt-5 bg-gradient-to-b from-[#2a2a2a]/100 to-transparent relative w-full top-0">    
-    <div class="container max-w-screen-2xl mx-auto">
+    <div class="container max-w-screen-2xl mx-auto mt-4">
         <div class="flex justify-between items-center z-50">
             <a href="/" class="items-center text-white hidden md:flex">
-                <img src="{{ asset('assets/logo/logo-utensil.png') }}" alt="Logo" class="h-16"> 
+                <img src="{{ asset('assets/logo/logo-utensil.png') }}" alt="Logo" class="h-20"> 
             </a>
             <a href="/" class="items-center text-white md:hidden flex">
                 <img src="{{ asset('assets/logo/logo-utensil-image.png') }}" alt="Logo" class="h-16" style="width: auto; height:45px;"> 
@@ -16,11 +16,11 @@
                 <div class="line3 w-10 h-1 bg-white my-1"></div>
             </div>
         </div>
-        <div class="hidden md:flex mt-12 space-x-12" id="nav-menu">
-            <a href="/about" class="text-white hover:text-yellow-400 transition">About Us</a>
-            <a href="/product" class="text-white hover:text-yellow-400 transition">Our Product</a>
-            <a href="/promotion" class="text-white hover:text-yellow-400 transition">Promotional Product</a>
-            <a href="/contact" class="text-white hover:text-yellow-400 transition">Contact Us</a>
+        <div class="hidden lg:flex mt-12 space-x-12 2xl:text-[1.2rem] xl:text-[1.2rem]" id="nav-menu">
+            <a href="/about" class="text-white 2xl:px-8 hover:text-yellow-400 transition">About Us</a>
+            <a href="/product" class="text-white 2xl:px-8 hover:text-yellow-400 transition">Our Product</a>
+            <a href="/promotion" class="text-white 2xl:px-8 hover:text-yellow-400 transition">Promotional Product</a>
+            <a href="/contact" class="text-white 2xl:px-8 hover:text-yellow-400 transition">Contact Us</a>
             <a href="https://wa.me/628111808303" class="text-white hover:text-yellow-400 transition" style="margin-left: 120px">+62-811-180-8303</a>
         </div>
     </div>
