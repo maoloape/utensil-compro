@@ -74,7 +74,7 @@
         <!-- Produk -->
         <div class="w-auto grid grid-cols-1 lg:grid-cols-3 gap-4 lg:ml-6 pt-[4rem]">
             @foreach ($products as $product)
-                <div class="bg-white p-4 rounded-[2rem] lg:h-[28rem] lg:w-[25rem] shadow-lg flex flex-col justify-center items-center product"
+                <div class="bg-white p-4 rounded-[2rem] 2xl:h-[24rem] 2xl:w-[24rem] xl:h-[20rem] xl:w-[18rem] shadow-lg flex flex-col justify-center items-center product"
                     data-brand-id="{{ $product->brand_id }}"
                     data-category-id="{{ $product->categories->pluck('id')->join(',') }}">
                     <img src="{{ $product->getImageUrlAttribute() }}" alt="{{ $product->name }}" class="h-32 object-contain">

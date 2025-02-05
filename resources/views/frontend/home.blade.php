@@ -83,7 +83,7 @@
 
                 <div class="lg:w-1/3 text-left md:w-1/2 w-full mb-6 lg:mb-0">
                     <img id="brand-logo" src="{{ $activeBrand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="mb-9 w-auto h-16 lg:h-24 top show">
-                    <p id="brand-description" class="text-[1rem] lg:text-lg text-white mb-8 show"></p>
+                    <p id="brand-description" class="xl:text-[1rem] 2xl:text-[1.4rem] lg:text-lg text-white mb-8 show"></p>
                     <a id="see-product-link" class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="{{ route('product', ['brand' => $activeBrand->name]) }}">
                         See Product
                     </a>
@@ -93,7 +93,7 @@
                         <div id="slider" class="flex items-center">
                             @foreach($brands as $index => $brand)
                                 <div 
-                                    class="shrink-0 w-1/3 md:w-1/4 lg:w-1/3 px-6 clickable-slide overflow-y-hidden" 
+                                    class="shrink-0 w-1/3 md:w-1/4 lg:w-1/3 pr-4 clickable-slide overflow-y-hidden" 
                                     data-index="{{ $index }}"
                                     data-cover-background-url="{{ $brand->getFirstMediaUrl('brand-cover-background') }}" 
                                     data-id="{{ $brand->id }}" 
@@ -159,12 +159,12 @@
     </div>
     {{-- About Home --}}
     <div class="bg-[#2a2a2a]">
-        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-8 py-12 md:py-16 lg:py-20">
+        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-8 pb-12">
             <div class="w-full md:w-1/2 text-right md:text-center mb-0 lg:mb-8">
                 <div class="hidden lg:flex justify-center md:justify-end mb-0 lg:mb-4">
                     <div class="h-1 w-full md:w-1/2 bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="hidden lg:block text-[9.4rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
+                <h1 class="hidden lg:block xl:text-[7rem] 2xl:text-[9.4rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                 <h1 class="lg:hidden text-[48px] md:text-[64px] text-left lg:text-[98px] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                     <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 hidden lg:inline-block" href="/about">Read More</a>
                 <div class="flex lg:hidden justify-center md:justify-end">
@@ -173,7 +173,7 @@
             </div>
             
             <div class="w-full md:w-1/2 lg:text-left md:text-center">
-                <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8" style="line-height: 1.25">
+                <h1 class="text-lg md:text-xl lg:text-[1.4rem] 2xl:text-[2rem] text-white mb-8 xl:pr-12 lg:pr-0" style="line-height: 1.25">
                     {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
                 </h1>
                 <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 inline-block lg:hidden" href="/about">Read More</a>
@@ -205,7 +205,7 @@
                                 <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div> 
                             @endif
                             
-                            <p class="text-{{ $category->text_color }} text-[4.5rem] font-serif font-bold leading-none">{{ $category->name }}</p>
+                            <p class="text-{{ $category->text_color }} 2xl:text-[4.5rem] xl:text-[3rem] font-serif font-bold leading-none">{{ $category->name }}</p>
                         </div>
     
                     </div>
@@ -233,13 +233,13 @@
     {{-- Desktop --}}
     <div class="hidden lg:inline-block w-full max-h-screen bg-cover" style="background-image: url('assets/cover/cover-promot-home.png') ">
         <div class="container">
-            <div class="text-right py-16 md:py-20 lg:py-24">
+            <div class="text-right py-12 pr-12">
                 <div class="flex justify-end mb-4">
                     <div class="h-1 w-[40%] bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="text-[48px] md:text-[64px] lg:text-[98px] text-black font-bold mb-4">Promotional <br> Product</h1>
+                <h1 class="text-[48px] md:text-[64px] xl:text-[6rem] 2xl:text-[9.4rem] text-black font-bold mb-4">Promotional <br> Product</h1>
                 <div class="flex justify-end mb-4">
-                    <p class="text-[1.2rem] md:text-[1.5rem] lg:text-[1.775rem]"> Countless institutions have used our products in their various <br>
+                    <p class="text-[1.2rem] xl:text-[1.4rem] 2xl:text-[1.775rem]"> Countless institutions have used our products in their various <br>
                         advertisement campaigns to promote the quality and versatility of <br>
                         their own products or services. Our products ensure your <br>
                         promotion will be successful, impactful and sustainable through a <br>
@@ -405,7 +405,7 @@
             }
 
             productElement.innerHTML = `
-                <div class="relative h-[24rem] w-[13.25rem] lg:h-[30rem] lg:w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                <div class="relative h-[24rem] w-[13.25rem] 2xl:h-[30rem] 2xl:w-[20rem] xl:h-[24rem] xl:w-[16rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
                     <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto h-12 mt-8 lg:mt-0 mb-2">
                     <img src="${product.image_url}" alt="${product.name}" class="w-auto h-40 mb-4">
                     <h3 class="text-center font-bold text-xl">${product.name}</h3>

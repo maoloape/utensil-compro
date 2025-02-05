@@ -15,7 +15,7 @@
         }
 
         .container{
-            max-width: 1740px;
+            max-width: 1640px;
         }
     </style>
 </head>

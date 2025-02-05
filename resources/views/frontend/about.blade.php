@@ -31,17 +31,17 @@
                     <div class="flex justify-end mb-4">
                         <div class="h-1 w-full bg-[#009ac7] rounded-[2rem]"></div>
                     </div>
-                    <h1 class="lg:text-[10rem] text-[3rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6; font-weight: 100;">', $about->about_title) !!}</h1>
+                    <h1 class="2xl:text-[10rem] xl:text-[7rem] text-[3rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6; font-weight: 100;">', $about->about_title) !!}</h1>
                     {{-- <a class="text-lg text-white borde px-4 py-3" href="/about" style="border: 2px solid; border-color: #009ac7; border-radius:2rem;">Read More</a> --}}
                 </div>
             
                 <div class="lg:w-1/2 w-full text-left">
-                    <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8" style="line-height: 1.25">
+                    <h1 class="text-lg md:text-xl 2xl:text-[2rem] text-white mb-8 2xl:pr-0 xl:pr-12" style="line-height: 1.25">
                         {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
                     </h1>
                     <div class="flex-row gap-4 hidden lg:flex">
                         @foreach($brands as $brand)
-                            <img class="h-[5rem]" src="{{ $brand->getLogoUrlAttribute() }}" alt="{{ $brand->name }}">
+                            <img class="2xl:h-[5rem] xl:h-[3rem]" src="{{ $brand->getLogoUrlAttribute() }}" alt="{{ $brand->name }}">
                         @endforeach
                     </div>
                     

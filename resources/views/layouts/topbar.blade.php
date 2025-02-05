@@ -21,7 +21,7 @@
             <a href="/product" class="text-white hover:text-yellow-400 transition">Our Product</a>
             <a href="/promotion" class="text-white hover:text-yellow-400 transition">Promotional Product</a>
             <a href="/contact" class="text-white hover:text-yellow-400 transition">Contact Us</a>
-            <a href="https://wa.me/628111808303" class="text-white hover:text-yellow-400 transition" style="margin-left: 180px">+62-811-180-8303</a>
+            <a href="https://wa.me/628111808303" class="text-white hover:text-yellow-400 transition" style="margin-left: 120px">+62-811-180-8303</a>
         </div>
     </div>
     <div class="menu-popup fixed inset-0 bg-black bg-opacity-80 z-10 hidden justify-center items-center pt-24" id="menuPopup">
