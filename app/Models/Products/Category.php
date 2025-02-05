@@ -12,7 +12,9 @@ class Category extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $fillable = ['name', 'slug', 'active'];
+    protected $fillable = [
+        'name', 'slug', 'active', 'div_class', 'div_garis', 'col_span', 'row_span', 'order', 'text_color'
+    ];
 
     protected static function booted()
     {
@@ -26,10 +28,10 @@ class Category extends Model implements HasMedia
         });
     }
 
-    // public function registerMediaCollections(): void
-    // {
-    //     $this->addMediaCollection('category')->singleFile();
-    // }
+    public function setTextColorAttribute($value)
+    {
+        $this->attributes['text_color'] = strtolower($value);
+    }
 
     public function registerMediaCollections(): void
     {
@@ -46,3 +48,4 @@ class Category extends Model implements HasMedia
         return $this->belongsToMany(Product::class);
     }
 }
+

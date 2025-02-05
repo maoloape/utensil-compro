@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Slug;
@@ -39,7 +40,38 @@ class CategoryResource extends Resource
                     ->label('image')
                     ->required()
                     ->collection('category'),
-            ]);
+                    Select::make('div_class')
+                    ->options([
+                        1 => 'Class 1',
+                        2 => 'Class 2',
+                        3 => 'Class 3',
+                    ])
+                    ->required(),
+        
+                Select::make('div_garis')
+                    ->options([
+                        1 => 'Vertical Line',
+                        2 => 'Horizontal Line',
+                    ])
+                    ->required(),
+        
+                TextInput::make('col_span')
+                    ->numeric()
+                    ->default(1)
+                    ->required(),
+        
+                TextInput::make('row_span')
+                    ->default(1)
+                    ->numeric()
+                    ->required(),
+                TextInput::make('text_color')
+                    ->required(),
+                TextInput::make('order')
+                    ->label('Order')
+                    ->default(1)
+                    ->numeric()
+                    ->required(),
+                ]);
     }
 
     public static function table(Table $table): Table

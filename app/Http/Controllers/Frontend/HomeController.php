@@ -15,10 +15,12 @@ class HomeController extends Controller
     {
         $brands = Brand::orderBy('id', 'asc')->get();
         $product = Product::all();
-        $about = About::first(); 
-        $categories = Category::all(); 
-        return view('frontend.home', compact('brands', 'product', 'about', 'categories')); 
+        $about = About::first();
+        $categories = Category::orderBy('order', 'asc')->get();
+
+        return view('frontend.home', compact('brands', 'product', 'about', 'categories'));
     }
+
 
     public function fetchProductsByBrand($brandId)
     {

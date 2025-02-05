@@ -30,29 +30,27 @@
         <div class="flex flex-col lg:flex-row w-full h-auto">
             <div class="lg:w-1/2 w-full lg:text-right px-4 lg:px-0 mb-0 bg-[#666666]">
                 <div class="flex justify-end mb-4 lg:pt-[7rem] pt-[2rem]">
-                    <div class="h-1 w-[40rem] bg-[#009ac7] rounded-[2rem]"></div>
+                    <div class="h-1 w-[25rem] bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="lg:text-[6rem] text-white mb-4">Hubungi <br> Kami <h1>
+                <h1 class="lg:text-[7rem] text-white mb-4">Hubungi <br> Kami <h1>
             </div>          
             <div class="lg:w-1/2 w-full text-left mt-0 bg-[#b2b2b2] pb-12 pt-4 lg:pt-0">
                 <div class="flex flex-col lg:flex-row w-full lg:w-full pb-12 lg:pt-[6rem] px-4 text-black"> 
-                    <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.2rem] lg:py-0 py-2"> 
-                        <p class="font-semibold" style="margin-bottom: 0.25rem;">Bandung (Factory)</p> 
-                        <p style="margin-bottom: 0;">Jalan Kopo Bihbul No. 131</p> 
-                        <p style="margin-bottom: 0;">Bandung, Jawa Barat 40225, Indonesia</p> 
-                        <p style="margin-bottom: 0;">Tel: 022-540-7772 / 73</p> 
-                        <p style="margin-bottom: 0;">Fax: 022-540-2831</p> 
-                        <p style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-black font-bold">bandung@indoutensil.com</a></p> 
-                    </div> 
-                    <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.2rem] lg:py-0 py-2"> 
-                        <p class="font-semibold" style="margin-bottom: 0;">Jakarta (Marketing)</p> 
-                        <p style="margin-bottom: 0;">Tel: +6221-391-6949</p> 
-                        <p style="margin-bottom: 0;">Fax: +6221-392-7090</p> 
-                        <p style="margin-bottom: 0;">Email: <a href="mailto:jkt@indoutensil.com" class="text-black font-bold">jkt@indoutensil.com</a></p> 
-                        <p style="margin-bottom: 0;">WA: +62-811-180-8303</p> 
-                    </div> 
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                        @foreach($office as $kantor)
+                            <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.6rem] lg:py-0 py-2">
+                                <p class="font-semibold" style="margin-bottom: 0.25rem;">{{ $kantor->title }}</p> 
+                                <p style="margin-bottom: 0;">{{ $kantor->alamat }}</p> 
+                                <p style="margin-bottom: 0;">Tel: {{ $kantor->telephone }}</p> 
+                                <p style="margin-bottom: 0;">Fax: {{ $kantor->fax }}</p> 
+                                <p style="margin-bottom: 0;">Email: <a href="mailto:{{ $kantor->email }}" class="text-black font-bold">{{ $kantor->email }}</a></p> 
+                                @if($kantor->whatsapp)
+                                    <p style="margin-bottom: 0;">WA: {{ $kantor->whatsapp }}</p>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-                <p class="px-4 m-0 lg:text-[1.2rem] text-black" style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-black font-bold">bandung@indoutensil.com</a></p> 
             </div>
         </div>
     </div>

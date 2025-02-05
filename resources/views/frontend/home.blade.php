@@ -184,62 +184,36 @@
     {{-- Category List Home --}}
     {{-- Desktop --}}
     <div class="w-full hidden lg:inline">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-screen">
-            <a href="/product?category%5B%5D=Flateware" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-flatware.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Flatware</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-screen" style="display: grid">
+            @foreach($categories as $category)
+                <a href="/product?category%5B%5D={{ str_replace(' ', '+', str_replace('&', '%26', $category->name)) }}" 
+                   class="col-span-{{ $category->col_span ?? 1 }} row-span-{{ $category->row_span ?? 1 }} text-decoration-none relative block overflow-hidden"
+                   style="background-image: url('{{ $category->image_url }}'); background-size: cover; background-position: center; grid-column: span {{ $category->col_span ?? 1 }}">
+    
+                    @if($category->div_class == 1)
+                        <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
+                    @elseif($category->div_class == 2)
+                        <div class="absolute right-0 top-0 flex justify-start items-end h-full p-4" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+                    @elseif($category->div_class == 3)
+                        <div class="absolute left-0 bottom-0 flex justify-start items-end p-4" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+                    @endif
+    
+                        <div class="pl-4 flex flex-col">
+                            @if($category->div_garis == 1)
+                                <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7]"></div> 
+                            @elseif($category->div_garis == 2)
+                                <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div> 
+                            @endif
+                            
+                            <p class="text-{{ $category->text_color }} text-[4.5rem] font-serif font-bold leading-none">{{ $category->name }}</p>
+                        </div>
+    
                     </div>
-                </div>
-            </a>
- 
-            <a href="/product?category%5B%5D=Drinking" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block overflow-hidden"
-                style="background-image: url('assets/cover/cover-category-drinking.png'); background-size: cover; background-position: center;">
-                
-                <div class="absolute left-0 bottom-0 flex justify-start items-end p-4"
-                    style="writing-mode: vertical-rl; transform: rotate(180deg);">
-                    <div class="pl-4 flex flex-col">
-                        <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-black text-[4rem] font-serif font-bold">Drinking</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/product?category%5B%5D=Kitchen+Knives" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-kitchenKnives.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Kitchen Knives</p>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/product?category%5B%5D=Tabletop" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block"
-                style="background-image: url('assets/cover/cover-category-tabletop.png'); background-size: cover; background-position: center;">
-                
-                <div class="absolute right-0 top-0 flex justify-start items-end h-full p-4"
-                    style="writing-mode: vertical-rl; transform: rotate(180deg);">
-                    <div class="pr-4 flex flex-col items-center">
-                        <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7]"></div>
-                        <p class="text-black text-[4rem] font-serif font-bold leading-none">Tabletop</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/product?category%5B%5D=Kitchen+Gadgets+%26+Tools" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-kitchenGadgetsTools.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Kitchen <br> Gadgets & Tools</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
     </div>
+    
     {{-- Mobile --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:hidden">
         @foreach($categories as $category)

@@ -66,31 +66,32 @@
 <div class="bg-white xl:mt-[16rem] lg:mt-0 office">
     <div class="container mx-auto flex flex-col lg:flex-row justify-center items-center gap-8 pb-12">
         <div class="lg:w-1/2 w-full lg:text-right px-4 lg:px-0 mb-0">
-            <div class="flex justify-end mb-4">
+            <div class="flex justify-end">
                 <div class="h-1 w-[40rem] bg-[#009ac7] rounded-[2rem]"></div>
             </div>
-            <h1 class="text-[6rem] text-black mb-4">Our <br> <strong class="text-[#0298c6]" style="font-weight: normal"> Office </strong>  <h1>
+            <h1 class="text-[7rem] text-black mb-4 font-[500]">Our <br> <strong class="text-[#0298c6]" style="font-weight: 500"> Offices </strong>  <h1>
         </div>
     
         <div class="lg:w-1/2 w-full text-left mt-0">
             <div class="flex flex-col lg:flex-row w-full lg:w-full pb-12 lg:pt-[6rem] px-4 text-black"> 
-                <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.2rem] lg:py-0 py-2"> 
-                    <p class="font-semibold" style="margin-bottom: 0.25rem;">Bandung (Factory)</p> 
-                    <p style="margin-bottom: 0;">Jalan Kopo Bihbul No. 131</p> 
-                    <p style="margin-bottom: 0;">Bandung, Jawa Barat 40225, Indonesia</p> 
-                    <p style="margin-bottom: 0;">Tel: 022-540-7772 / 73</p> 
-                    <p style="margin-bottom: 0;">Fax: 022-540-2831</p> 
-                    <p style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-black font-bold">bandung@indoutensil.com</a></p> 
-                </div> 
-                <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.2rem] lg:py-0 py-2"> 
-                    <p class="font-semibold" style="margin-bottom: 0;">Jakarta (Marketing)</p> 
-                    <p style="margin-bottom: 0;">Tel: +6221-391-6949</p> 
-                    <p style="margin-bottom: 0;">Fax: +6221-392-7090</p> 
-                    <p style="margin-bottom: 0;">Email: <a href="mailto:jkt@indoutensil.com" class="text-black font-bold">jkt@indoutensil.com</a></p> 
-                    <p style="margin-bottom: 0;">WA: +62-811-180-8303</p> 
-                </div> 
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    @foreach($offices as $kantor)
+                        <div class="text-left lg:text-left w-full lg:w-full lg:text-[1.6rem] lg:py-0 py-2">
+                            <p class="font-semibold" style="margin-bottom: 0.25rem;">{{ $kantor->title }}</p> 
+                            <p style="margin-bottom: 0;">{{ $kantor->alamat }}</p> 
+                            <p style="margin-bottom: 0;">Tel: {{ $kantor->telephone }}</p> 
+                            <p style="margin-bottom: 0;">Fax: {{ $kantor->fax }}</p> 
+                            <p style="margin-bottom: 0;">Email: <a href="mailto:{{ $kantor->email }}" class="text-black font-bold">{{ $kantor->email }}</a></p> 
+                            @if($kantor->whatsapp)
+                                <p style="margin-bottom: 0;">WA: {{ $kantor->whatsapp }}</p>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            <p class="px-4 m-0 lg:text-[1.2rem]" style="margin-bottom: 0;">Email: <a href="mailto:bandung@indoutensil.com" class="text-black font-bold">bandung@indoutensil.com</a></p> 
+            @foreach($career as $karir)
+                <p class="px-4 m-0 lg:text-[1.6rem]" style="margin-bottom: 0;"> For career inquires please email to <a href="mailto:{{ $karir->email_career }}" class="text-black font-bold">{{ $karir->email_career }}</a></p> 
+            @endforeach
         </div>
     </div>        
 </div>
@@ -115,7 +116,7 @@
                 type="text" 
                 id="name" 
                 name="name" 
-                class="w-full py-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full py-2 px-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
         </div>
         <div class="flex gap-6 items-center py-2">
@@ -127,7 +128,7 @@
                 type="email" 
                 id="email" 
                 name="email" 
-                class="w-full pr-12 py-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full pr-12 py-2 px-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
         </div>
         <div class="flex gap-6 items-center py-2">
@@ -139,7 +140,7 @@
                 type="text" 
                 id="phone" 
                 name="phone" 
-                class="w-full pr-12 py-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full pr-12 py-2 px-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
         </div>
         <div class="flex gap-6 items-center py-2">
@@ -150,7 +151,7 @@
                 id="message" 
                 name="message" 
                 rows="4" 
-                class="w-full pr-12 py-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full pr-12 py-2 px-2 border-[1px] border-black rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             ></textarea>
         </div>
         <div class="flex justify-end pt-6">
