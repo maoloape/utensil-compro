@@ -35,8 +35,10 @@ class ProductController extends Controller
             });
         }
 
-        $products = $products->with('media')->get();
+        // Menggunakan paginate(9) untuk menampilkan 9 produk per halaman
+        $products = $products->with('media')->paginate(9);
 
         return view('frontend.product', compact('brands', 'categories', 'products', 'page', 'brandName'));
     }
+
 }

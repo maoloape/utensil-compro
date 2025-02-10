@@ -53,13 +53,13 @@
             padding: 2px; */
         }
         #slider {
-            width: 100%;
+            width: 80%;
             padding: 0;
             margin: 0;
 
         }
         #slider > div {
-            width: 100%;
+            width: 80%;
             margin: 0;
             /* padding: 4px; */
             padding-left: 4px;
@@ -102,14 +102,14 @@
             @include('layouts.topbar')
             <div class="flex flex-col lg:flex-row gap-4 mx-auto items-center justify-center h-full pt-[5rem] lg:pt-[10rem] container">
 
-                <div class="lg:w-1/3 text-left md:w-1/2 w-full mb-6 lg:mb-0">
+                <div class="xl:w-1/3 lg:w-1/2 text-left mb-6 lg:mb-0">
                     <img id="brand-logo" src="{{ $activeBrand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="mb-9 w-auto h-16 lg:h-24 top show">
                     <p id="brand-description" class="2xl:text-[1rem] xl:text-[0.8rem] lg:text-lg text-white mb-8 show"></p>
                     <a id="see-product-link" class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="{{ route('product', ['brand' => $activeBrand->name]) }}">
                         See Product
                     </a>
                 </div>
-                <div class="lg:w-2/3 relative md:w-1/4">
+                <div class="xl:w-2/3 lg:w-auto relative">
                     <div id="slider-container" class="overflow-hidden">
                         <div id="slider" class="flex items-center">
                             @foreach($brands as $index => $brand)
@@ -165,7 +165,7 @@
                 <button id="prevProduct" class="w-10 h-10 border border-white rounded-full flex items-center justify-center mr-4">
                     <span class="text-white text-[1rem] font-bold">&lt;</span>
                 </button>
-                <div id="product-slider" class="grid grid-cols-1 lg:grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
+                <div id="product-slider" class="grid md:grid-cols-4 xl:grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
                    {{-- show product --}}
                 </div>
                 
@@ -426,9 +426,9 @@
             }
 
             productElement.innerHTML = `
-                <div class="relative h-[24rem] w-[13.25rem] 2xl:h-[30rem] 2xl:w-[20rem] xl:h-[24rem] xl:w-[16rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                    <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto h-12 mt-8 lg:mt-0 mb-2">
-                    <img src="${product.image_url}" alt="${product.name}" class="w-auto h-40 mb-4">
+                <div class="relative h-[24rem] w-[13.25rem] 2xl:h-[30rem] 2xl:w-[20rem] xl:h-[24rem] xl:w-[16rem] lg:w-[12rem] md:h-[24rem] md:w-[10rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                    <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto 2xl:h-12 xl:h-12 lg:h-12 md:h-8 sm:h-8 h-8 mt-8 lg:mt-0 mb-2">
+                    <img src="${product.image_url}" alt="${product.name}" class="w-auto lg:h-40 md:h-20 mb-4">
                     <h3 class="text-center font-bold text-xl">${product.name}</h3>
                     <p class="text-center text-gray-500 mb-8 lg:mb-0">${product.type}</p>
                 </div>

@@ -46,6 +46,27 @@
         display: inline-block;
     }
 
+    @media (min-width: 769px) and (max-width: 1024px) {
+        #slider-container {
+            overflow-x: hidden;
+            /* margin: 6px;
+            padding: 2px; */
+        }
+        #slider {
+            width: 80%;
+            padding: 0;
+            margin: 0;
+
+        }
+        #slider > div {
+            width: 80%;
+            margin: 0;
+            /* padding: 4px; */
+            padding-left: 4px;
+            padding-right: 12px; 
+        }
+    }
+
     @media (max-width: 768px) {
         #slider-container {
             overflow-x: hidden;
@@ -53,13 +74,13 @@
             padding: 2px; */
         }
         #slider {
-            width: 100%;
+            width: 74%;
             padding: 0;
             margin: 0;
 
         }
         #slider > div {
-            width: 100%;
+            width: 74%;
             margin: 0;
             /* padding: 4px; */
             padding-left: 4px;
@@ -81,12 +102,14 @@
             @include('layouts.topbar')
             <div class="flex flex-col lg:flex-row gap-4 mx-auto items-center justify-center h-full pt-[5rem] lg:pt-[10rem] container">
 
-                <div class="lg:w-1/3 text-left md:w-1/2 w-full mb-6 lg:mb-0">
+                <div class="xl:w-1/3 lg:w-1/2 text-left mb-6 lg:mb-0">
                     <img id="brand-logo" src="{{ $activeBrand->getFirstMediaUrl('brand-logo') }}" alt="Logo" class="mb-9 w-auto h-16 lg:h-24 top show">
-                    <p id="brand-description" class="text-[1rem] lg:text-lg text-white mb-8 show"></p>
-                    <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="/product">See Product</a>
+                    <p id="brand-description" class="2xl:text-[1rem] xl:text-[0.8rem] lg:text-lg text-white mb-8 show"></p>
+                    <a id="see-product-link" class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3" href="{{ route('product', ['brand' => $activeBrand->name]) }}">
+                        See Product
+                    </a>
                 </div>
-                <div class="lg:w-2/3 relative md:w-1/4">
+                <div class="xl:w-2/3 lg:w-auto relative">
                     <div id="slider-container" class="overflow-hidden">
                         <div id="slider" class="flex items-center">
                             @foreach($brands as $index => $brand)
@@ -98,6 +121,7 @@
                                     data-logo-url="{{ $brand->getFirstMediaUrl('brand-logo') }}"
                                     data-logo-hitam="{{ $brand->getFirstMediaUrl('brand-logo-hitam') }}"
                                     data-description="{{ str_replace('&nbsp;', '', strip_tags($brand->description)) }}"
+                                    data-brand="{{ $brand->name }}"
                                 >
                                     <div class="relative h-[20rem] lg:h-[30rem] rounded-[16px] shadow-lg bg-cover bg-center cursor-pointer lg:p-0 p-2" 
                                         style="background-image: url('{{ $brand->getFirstMediaUrl('brand-cover') }}');">
@@ -133,7 +157,7 @@
         <div class="text-center container">
             <div class="flex justify-center items-center mb-4">
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] mr-4 mb-2"></div>
-                <h1 class="lg:text-[4rem] text-white">PRODUK PILIHAN</h1>
+                <h1 class="2xl:text-[4rem] xl:text-[3rem] text-white">PRODUK PILIHAN</h1>
                 <div class="h-1 w-[6rem] rounded-lg bg-[#009ac7] ml-4 mb-2"></div>
             </div>
             <div class="absolute h-full bg-[#009ac7]"></div>
@@ -141,7 +165,7 @@
                 <button id="prevProduct" class="w-10 h-10 border border-white rounded-full flex items-center justify-center mr-4">
                     <span class="text-white text-[1rem] font-bold">&lt;</span>
                 </button>
-                <div id="product-slider" class="grid grid-cols-1 lg:grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
+                <div id="product-slider" class="grid md:grid-cols-4 xl:grid-cols-4 gap-4 pb-12" style="overflow: hidden;">
                    {{-- show product --}}
                 </div>
                 
@@ -156,21 +180,21 @@
     </div>
     {{-- About Home --}}
     <div class="bg-[#2a2a2a]">
-        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-8 py-12 md:py-16 lg:py-20">
+        <div class="container mx-auto flex flex-col md:flex-row justify-center items-center gap-8 pb-12">
             <div class="w-full md:w-1/2 text-right md:text-center mb-0 lg:mb-8">
                 <div class="hidden lg:flex justify-center md:justify-end mb-0 lg:mb-4">
                     <div class="h-1 w-full md:w-1/2 bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="hidden lg:block text-[9.4rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
+                <h1 class="hidden lg:block xl:text-[7rem] 2xl:text-[9.4rem] lg:text-[7rem] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                 <h1 class="lg:hidden text-[48px] md:text-[64px] text-left lg:text-[98px] text-white mb-4">{!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_title) !!}</h1>
                     <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 hidden lg:inline-block" href="/about">Read More</a>
                 <div class="flex lg:hidden justify-center md:justify-end">
-                    <div class="h-1 w-full md:w-1/2 bg-[#009ac7] rounded-[2rem]"></div>
+                    <div class="h-1 w-full bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
             </div>
             
             <div class="w-full md:w-1/2 lg:text-left md:text-center">
-                <h1 class="text-lg md:text-xl lg:text-[2rem] text-white mb-8" style="line-height: 1.25">
+                <h1 class="text-lg md:text-xl lg:text-[1.4rem] 2xl:text-[2rem] text-white mb-8 xl:pr-12 lg:pr-0" style="line-height: 1.25">
                     {!! str_replace('<strong>', '<strong style="color: #0298c6;">', $about->about_content) !!}
                 </h1>
                 <a class="text-[1rem] lg:text-lg text-white border-2 border-[#009ac7] rounded-[2rem] px-4 py-3 inline-block lg:hidden" href="/about">Read More</a>
@@ -181,67 +205,41 @@
     {{-- Category List Home --}}
     {{-- Desktop --}}
     <div class="w-full hidden lg:inline">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-screen">
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-flatware.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Flatware</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 h-screen" style="display: grid">
+            @foreach($categories as $category)
+                <a href="/product?category%5B%5D={{ str_replace(' ', '+', str_replace('&', '%26', $category->name)) }}" 
+                   class="col-span-{{ $category->col_span ?? 1 }} row-span-{{ $category->row_span ?? 1 }} text-decoration-none relative block overflow-hidden"
+                   style="background-image: url('{{ $category->image_url }}'); background-size: cover; background-position: center; grid-column: span {{ $category->col_span ?? 1 }}">
+    
+                    @if($category->div_class == 1)
+                        <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
+                    @elseif($category->div_class == 2)
+                        <div class="absolute right-0 top-0 flex justify-start items-end h-full p-4" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+                    @elseif($category->div_class == 3)
+                        <div class="absolute left-0 bottom-0 flex justify-start items-end p-4" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+                    @endif
+    
+                        <div class="pl-4 flex flex-col">
+                            @if($category->div_garis == 1)
+                                <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7]"></div> 
+                            @elseif($category->div_garis == 2)
+                                <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div> 
+                            @endif
+                            
+                            <p class="text-{{ $category->text_color }} 2xl:text-[4.5rem] xl:text-[3rem] lg:text-[3rem] font-serif font-bold leading-none">{{ $category->name }}</p>
+                        </div>
+    
                     </div>
-                </div>
-            </a>
- 
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block overflow-hidden"
-                style="background-image: url('assets/cover/cover-category-drinking.png'); background-size: cover; background-position: center;">
-                
-                <div class="absolute left-0 bottom-0 flex justify-start items-end p-4"
-                    style="writing-mode: vertical-rl; transform: rotate(180deg);">
-                    <div class="pl-4 flex flex-col">
-                        <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-black text-[4rem] font-serif font-bold">Drinking</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-2 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-kitchenKnives.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Kitchen Knives</p>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-1 row-span-1 text-decoration-none relative block"
-                style="background-image: url('assets/cover/cover-category-tabletop.png'); background-size: cover; background-position: center;">
-                
-                <div class="absolute right-0 top-0 flex justify-start items-end h-full p-4"
-                    style="writing-mode: vertical-rl; transform: rotate(180deg);">
-                    <div class="pr-4 flex flex-col items-center">
-                        <div class="h-[8rem] w-1 rounded-lg bg-[#009ac7]"></div>
-                        <p class="text-black text-[4rem] font-serif font-bold leading-none">Tabletop</p>
-                    </div>
-                </div>
-            </a>
-
-            <a href="/product" class="col-span-1 md:col-span-1 lg:col-span-2 row-span-1 text-decoration-none overflow-hidden" 
-                style="background-image: url('assets/cover/cover-category-kitchenGadgetsTools.png'); background-size: cover;">
-                <div class="w-full h-full bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end p-4 transition-transform duration-100 scale-100 hover:scale-110">
-                    <div class="pl-12 flex flex-col">
-                        <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
-                        <p class="text-white text-[4rem]">Kitchen <br> Gadgets & Tools</p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            @endforeach
         </div>
     </div>
+    
     {{-- Mobile --}}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:hidden">
         @foreach($categories as $category)
-            <a href="/product" class="col-span-1 text-decoration-none overflow-hidden w-full h-full"
-                style="background-image: url('{{ $category->getImageUrlAttribute() }}'); background-size: cover;">
+        <a href="/product?category%5B%5D={{ str_replace(' ', '+', str_replace('&', '%26', $category->name)) }}" class="col-span-1 text-decoration-none overflow-hidden w-full h-full"
+            style="background-image: url('{{ $category->getImageUrlAttribute() }}'); background-size: cover;">
                 <div class="w-full h-[15rem] bg-gradient-to-b from-[#2a2a2a]/0 to-[#2a2a2a]/100 flex justify-start items-end py-4 px-4 transition-transform duration-100 scale-100 hover:scale-110">
                     <div class="flex flex-col">
                         <div class="h-1 w-[8rem] rounded-lg bg-[#009ac7] mb-2"></div>
@@ -256,13 +254,13 @@
     {{-- Desktop --}}
     <div class="hidden lg:inline-block w-full max-h-screen bg-cover" style="background-image: url('assets/cover/cover-promot-home.png') ">
         <div class="container">
-            <div class="text-right py-16 md:py-20 lg:py-24">
+            <div class="text-right py-12 pr-12">
                 <div class="flex justify-end mb-4">
                     <div class="h-1 w-[40%] bg-[#009ac7] rounded-[2rem]"></div>
                 </div>
-                <h1 class="text-[48px] md:text-[64px] lg:text-[98px] text-black font-bold mb-4">Promotional <br> Product</h1>
+                <h1 class="text-[48px] md:text-[64px] xl:text-[6rem] 2xl:text-[9.4rem] text-black font-bold mb-4">Promotional <br> Product</h1>
                 <div class="flex justify-end mb-4">
-                    <p class="text-[1.2rem] md:text-[1.5rem] lg:text-[1.775rem]"> Countless institutions have used our products in their various <br>
+                    <p class="text-[1.2rem] xl:text-[1.4rem] 2xl:text-[1.775rem]"> Countless institutions have used our products in their various <br>
                         advertisement campaigns to promote the quality and versatility of <br>
                         their own products or services. Our products ensure your <br>
                         promotion will be successful, impactful and sustainable through a <br>
@@ -327,6 +325,11 @@
     slider.style.transform = `translateX(-${visibleSlides * slideWidth}px)`; 
     currentSlide = visibleSlides;
 
+    function updateSeeProductLink(brandName) {
+        const seeProductLink = document.getElementById("see-product-link");
+        seeProductLink.href = `/product?brand=${encodeURIComponent(brandName)}`;
+    }
+
     function updateSlider() {
         slider.style.transition = "transform 0.5s ease-in-out";
         slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
@@ -338,6 +341,7 @@
         const brandCoverBackgroundUrl = activeSlide.getAttribute('data-cover-background-url');
         const getLogoUrl = activeSlide.getAttribute('data-logo-url');
         const brandDescription = activeSlide.getAttribute('data-description');
+        const brandName = activeSlide.getAttribute('data-brand');
 
         background.style.backgroundImage = `url(${brandCoverBackgroundUrl})`;
         brandLogo.src = getLogoUrl;
@@ -354,6 +358,8 @@
         const progress = ((realIndex + 1) / totalSlides) * 100;
         const progressFill = document.getElementById("progressFill");
         progressFill.style.width = `${progress}%`;
+
+        updateSeeProductLink(brandName);
 
         // Muat produk berdasarkan slide aktif
         const brandId = activeSlide.getAttribute('data-id');
@@ -394,31 +400,6 @@
 
     const slides = document.querySelectorAll(".clickable-slide");
 
-    slides.forEach(slide => {
-        slide.addEventListener("click", () => {
-            const targetIndex = parseInt(slide.getAttribute("data-index"), 10);
-            const realTarget = targetIndex + visibleSlides;
-            currentSlide = realTarget;
-
-            updateSlider();
-            autoSlide();
-        });
-    });
-
-    // prevBtn.addEventListener("click", () => {
-    //     currentSlide--;
-    //     updateSlider();
-    //     checkForReset();
-    //     autoSlide();
-    // });
-
-    // nextBtn.addEventListener("click", () => {
-    //     currentSlide++;
-    //     updateSlider();
-    //     checkForReset();
-    //     autoSlide();
-    // });
-
     updateSlider();
     autoSlide();
 
@@ -445,9 +426,9 @@
             }
 
             productElement.innerHTML = `
-                <div class="relative h-[24rem] w-[13.25rem] lg:h-[30rem] lg:w-[20rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
-                    <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto h-12 mt-8 lg:mt-0 mb-2">
-                    <img src="${product.image_url}" alt="${product.name}" class="w-auto h-40 mb-4">
+                <div class="relative h-[24rem] w-[13.25rem] 2xl:h-[30rem] 2xl:w-[20rem] xl:h-[24rem] xl:w-[16rem] lg:w-[12rem] md:h-[24rem] md:w-[10rem] rounded-[16px] shadow-lg bg-white flex flex-col justify-center items-center">
+                    <img src="${brandLogoUrl}" alt="Logo Hitam" class="w-auto 2xl:h-12 xl:h-12 lg:h-12 md:h-8 sm:h-8 h-8 mt-8 lg:mt-0 mb-2">
+                    <img src="${product.image_url}" alt="${product.name}" class="w-auto lg:h-40 md:h-20 mb-4">
                     <h3 class="text-center font-bold text-xl">${product.name}</h3>
                     <p class="text-center text-gray-500 mb-8 lg:mb-0">${product.type}</p>
                 </div>

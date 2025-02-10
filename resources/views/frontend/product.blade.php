@@ -25,6 +25,35 @@
         width: 70%;
         color: #fff;
     }
+
+    .pagination {
+        display: flex;
+        list-style: none;
+        gap: 5px;
+    }
+    .pagination li {
+        display: inline-block;
+    }
+    .pagination a {
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+        color: #007bff;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+    .pagination a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .pagination .active span {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+</style>
+
 </style>
 @endsection
 
@@ -33,7 +62,7 @@
         @include('layouts.topbar')
     </div>
 
-    <div class="container mx-auto px-4 pt-16 flex flex-col lg:flex-row pb-[12rem]">
+    <div class="container mx-auto px-4 pt-16 flex flex-col lg:flex-row pb-12">
         <!-- Sidebar Filter -->
         <div class="w-full md:w-1/4 bg-white p-4 rounded-lg">
             <div class="flex justify-between items-center">
@@ -70,23 +99,28 @@
             </div>
 
         </div>
-        
-        <!-- Produk -->
-        <div class="w-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:ml-6 pt-[4rem]">
-            @foreach ($products as $product)
-                <div class="bg-white p-4 rounded-[2rem] 2xl:h-[24rem] 2xl:w-[24rem] xl:h-[20rem] xl:w-[18rem] shadow-lg flex flex-col justify-center items-center product"
-                    data-brand-id="{{ $product->brand_id }}"
-                    data-category-id="{{ $product->categories->pluck('id')->join(',') }}">
-                    <img src="{{ $product->getImageUrlAttribute() }}" alt="{{ $product->name }}" class="h-32 object-contain">
-                    <div class="mt-2 text-center items-center justify-center">
-                        <img src="{{ $product->brand->logo_hitam_url }}" alt="Brand Logo" class="h-12 py-2 object-contain mx-auto">                    
-                        <h3 class="mt-2 font-semibold">{{ $product->name }}</h3>
-                        <p class="text-gray-500 text-sm">{{ $product->type }}</p>
+
+        <div class="w-auto">
+            <div class="w-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4 lg:ml-6 pt-[4rem]">
+                @foreach ($products as $product)
+                    <div class="bg-white p-4 rounded-[2rem] 2xl:h-[24rem] 2xl:w-[24rem] xl:h-[20rem] xl:w-[18rem] shadow-lg flex flex-col justify-center items-center product"
+                        data-brand-id="{{ $product->brand_id }}"
+                        data-category-id="{{ $product->categories->pluck('id')->join(',') }}">
+                        <img src="{{ $product->getImageUrlAttribute() }}" alt="{{ $product->name }}" class="h-32 object-contain">
+                        <div class="mt-2 text-center items-center justify-center">
+                            <img src="{{ $product->brand->logo_hitam_url }}" alt="Brand Logo" class="h-12 py-2 object-contain mx-auto">                    
+                            <h3 class="mt-2 font-semibold">{{ $product->name }}</h3>
+                            <p class="text-gray-500 text-sm">{{ $product->type }}</p>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
+            <div class="flex justify-center items-center text-center mt-24">
+                {{ $products->appends(request()->query())->links() }}
+            </div>
         </div>
     </div>
+     
 @endsection
 
 @section('script')
@@ -106,11 +140,12 @@
                 url.searchParams.delete('brand');
             }
 
-            url.searchParams.delete('category[]');
-
+            url.searchParams.delete('category[]'); 
             selectedCategoryNames.forEach(catName => {
                 url.searchParams.append('category[]', catName);
             });
+
+            url.searchParams.delete('page');
 
             window.location.href = url.toString();
         }
